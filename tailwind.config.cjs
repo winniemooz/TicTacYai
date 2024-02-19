@@ -20,7 +20,8 @@ const config = {
 				},				
 			},
 			fontFamily: {
-				kanit: ["Kanit", "sans-serif"]
+				kanit: ["Kanit", "sans-serif"],
+				fredoka: ["Fredoka", "sans-serif"]
 			}
 		},
 	},
