@@ -1,90 +1,104 @@
 <script>
-	let slideIndex = 1;
-
-	const slideTitle = {
-		1: 'Rules',
-		2: 'Characters',
-		3: 'Special Skills'
-	};
-
-	const changeSlide = (value) => {
-		slideIndex = Math.min(Math.max(slideIndex + value, 1), 3);
-	};
+	function logout() {
+		// Handle logout logic here
+		alert('Logout functionality not implemented in this example.');
+	}
 </script>
 
-<div class="flex h-screen flex-col items-center justify-center">
-  <div class="w-[500px] h-[500px] rounded shadow border">
-    <p class="bg-mongoose-800 text-white p-5 w-full">
-      {slideTitle[slideIndex]}
-    <p>
-    <div class="flex">
-      <button
-        on:click={() => changeSlide(-1)}
-        class="cursor-pointer rounded-md bg-white p-2 text-xl text-mongoose-800">❮</button
-      >
-      {#if slideIndex == 1}
-        <!-- Card 1: Rules -->
-        <div class="w-full">
-          <div class="h-250 flex flex-col items-center justify-center p-5">
-            <p class="text-center">
-              เกมนี้จะมีรูปแบบการเล่นที่ใกล้เคียงกับเกม Tic-Tac-Toe
-              ปกติแต่จะมีตารางแบ่งเป็นตารางย่อยเล็กๆ 9 ตาราง ตารางละ 3x3 โดยเราจะสุ่มช่องที่มี Items
-              พิเศษอยู่ โดยผู้เล่นจะเลือกลง X/O ในช่องไหนก็ได้ เมื่อผู้เล่นชนะในช่องเล็กแล้วจะกลายเป็น
-              X/O ในช่องใหญ่ เมื่อผู้เล่นชนะในช่องที่มี skill พิเศษผู้เล่นก็สามารถใช้ Skill
-              ในรอบถัดไปได้ แต่ผู้เล่นจะไม่สามารถเก็บสิทธินี้ไปใช้ในรอบต่อต่อไปได้
-              เกมจะจบลงต่อเมื่อผู้เล่นฝ่ายใดฝ่ายหนึ่งชนะในช่องใหญ่
-            </p>
-          </div>
-        </div>
-      {/if}
-    
-      {#if slideIndex == 2}
-        <!-- Card 2: Characters -->
-        <div class="w-full">
-          <div class="flex flex-col items-center p-5">
-            <div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-              <img src="pig.png" alt="Character 1" class="h-50 w-auto max-w-full rounded-lg" />
-              <p class="w-2/3">
-                เมื่อผู้เล่นชนะในช่องใหญ่มีโอกาส 50% ในการได้สุ่ม Skill หากผู้เล่นยังไม่ได้รับ Skill เลย
-              </p>
-            </div>
-            <div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-              <img src="cat.png" alt="Character 2" class="h-50 w-auto max-w-full rounded-lg" />
-              <p class="w-2/3">เมื่อฝ่ายตรงข้ามชนะ 2 ช่องใหญ่ผู้เล่นจะได้สุ่ม Skill 1 ครั้ง</p>
-            </div>
-            <div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-              <img src="dog.png" alt="Character 3" class="h-50 w-auto max-w-full rounded-lg" />
-              <p class="w-2/3">
-                ผู้เล่นมีโอกาส 25% ในการขโมย Skill เมื่อฝั่งตรงข้ามได้รับ Skill (ครั้งเดียว)
-              </p>
-            </div>
-          </div>
-        </div>
-      {/if}
-    
-      {#if slideIndex == 3}
-        <!-- Card 3: Special Skills -->
-        <div class="w-full">
-          <div class="flex flex-col items-center p-5">
-            <div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-              <img src="star.png" alt="Skill 1" class="h-50 w-auto max-w-full rounded-lg" />
-              <p class="w-2/3">Star ผู้เล่นสามารถวางทับหมากของฝ่ายตรงข้ามได้</p>
-            </div>
-            <div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-              <img src="timer.png" alt="Skill 2" class="h-50 w-auto max-w-full rounded-lg" />
-              <p class="w-2/3">Timer ลดเวลาการเล่นใน turn ต่อไปของฝ่ายตรงข้ามเหลือแค่ 3 วินาที</p>
-            </div>
-            <div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-              <img src="no-stopping.png" alt="Skill 3" class="h-50 w-auto max-w-full rounded-lg" />
-              <p class="w-2/3">Stop ห้ามผู้เล่นฝ่ายตรงเล่นใน turn ต่อไป</p>
-            </div>
-          </div>
-        </div>
-      {/if}
-      <button
-        on:click={() => changeSlide(1)}
-        class="cursor-pointer rounded-md bg-white p-2 text-xl text-mongoose-800">❯</button
-      >
-    </div>
-  </div>
+<div class="bg-f4f4f4 flex h-screen flex-col items-center bg-[#f2ece2]">
+	<div
+		id="container"
+		class="flex h-full w-full flex-col justify-between rounded-lg bg-white text-center shadow-md"
+	>
+		<img
+			id="logo"
+			src="https://cdn.discordapp.com/attachments/903554014766043148/1209178798508089434/Slide_16_9_-_3_1.png?ex=65e5fa83&is=65d38583&hm=bb4eca3970501a5e1d2bd2e0bf4bf5b81e167627efcbad0a01c0e0f526d25c20&"
+			alt=""
+			srcset=""
+		/>
+		<div id="middle-content">
+			<div class="button-container-main w-30 mx-auto flex flex-col justify-center gap-10">
+				<button
+					class="button mx-auto h-12 rounded-full bg-[#5a4134] text-[#f2ece2]"
+					on:click={() => (window.location.href = 'quickplay.html')}>Quick Play</button
+				>
+				<button
+					class="button mx-auto h-12 rounded-full bg-[#5a4134] text-[#f2ece2]"
+					on:click={() => (window.location.href = 'joinwithcode.html')}>Join with Code</button
+				>
+				<button
+					class="button mx-auto h-12 rounded-full bg-[#5a4134] text-[#f2ece2]"
+					on:click={() => (window.location.href = 'createroom.html')}>Create Room</button
+				>
+			</div>
+		</div>
+
+		<div class="button-container-bottom">
+			<button
+				class="button left h-10 rounded-full bg-[#5a4134] px-4 text-[#f2ece2]"
+				on:click={() => alert('View Profile functionality not implemented')}>View Profile</button
+			>
+			<button
+				class="button left rounded-full bg-[#5a4134] px-4 text-[#f2ece2]"
+				on:click={() => alert('Tutorial functionality not implemented')}>Tutorial</button
+			>
+			<button class="button right rounded-full bg-[#5a4134] px-4 text-[#f2ece2]" on:click={logout}
+				>Logout</button
+			>
+		</div>
+	</div>
 </div>
+
+<style>
+	#logo {
+		position: absolute;
+		top: -7%;
+		left: 24%;
+		width: 50%;
+	}
+	#container {
+		padding-top: 45vh;
+		background-color: #f2ece2;
+		border-radius: 5px;
+		text-align: center;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+	}
+
+	.button-container-main {
+		width: 30%;
+		height: 100%;
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 10px;
+	}
+
+	.button {
+		padding: 10px 20px;
+		margin: 5px;
+		font-size: 16px;
+		height: 50px;
+		cursor: pointer;
+		border: none;
+		border-radius: 30px;
+		color: white;
+		text-align: center;
+	}
+	.button.left {
+		height: 40px;
+		float: left;
+	}
+
+	.button.right {
+		height: 40px;
+		float: right;
+	}
+	img {
+		width: 100%;
+	}
+</style>

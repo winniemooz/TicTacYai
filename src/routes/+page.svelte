@@ -45,7 +45,7 @@
 	}
 </script>
 
-<div class="font-fredoka flex h-dvh w-full flex-col items-center justify-center bg-mongoose-300">
+<div class="font-fredoka flex min-h-dvh w-full flex-col items-center justify-center bg-mongoose-300">
 	<div class="flex w-full justify-center pb-5">
 		<div class="w-3/4 md:w-1/2">
 			<img src="/logo.png" alt="" />
@@ -70,10 +70,10 @@
 			</div>
 			<div class="flex rounded-b-xl bg-mongoose-200">
 				<div class="flex h-[40vh] w-full items-center px-10">
-					<div class="flex p-10">
+					<!-- <div class="flex p-10">
 						<img src="/favicon.png" alt="" />
-					</div>
-					<div class="w-full flex-col px-10">
+					</div> -->
+					<div class="w-full flex-col px-0 md:px-10">
 						{#if register}
 							<div class="form-container">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
@@ -139,7 +139,7 @@
 				{slideTitle[slideIndex]}
 			</p>
 			<div class="flex flex-1">
-				<div class="flex h-full items-center justify-center p-1">
+				<div class="flex h-auto md:h-full items-center justify-center p-1">
 					<button
 						on:click={() => changeSlide(-1)}
 						class="ml-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
@@ -215,7 +215,7 @@
 						</div>
 					{/if}
 				</div>
-				<div class="flex h-full items-center justify-center p-1">
+				<div class="flex h-auto md:h-full items-center justify-center p-1">
 					<button
 						on:click={() => changeSlide(1)}
 						class="mr-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
