@@ -2,7 +2,7 @@
 	import { authHandlers } from '../stores/authStore';
 
 	let register = false;
-	// let username = '';
+	let username = '';
 	let email = '';
 	let password = '';
 	let confirmpassword = '';
@@ -45,14 +45,14 @@
 	}
 </script>
 
-<div class="flex flex-col h-dvh w-full items-center justify-center bg-mongoose-300 font-fredoka">
-	<div class="w-full flex justify-center pb-5">
+<div class="font-fredoka flex h-dvh w-full flex-col items-center justify-center bg-mongoose-300">
+	<div class="flex w-full justify-center pb-5">
 		<div class="w-3/4 md:w-1/2">
-			<img src="/logo.png" alt="">
+			<img src="/logo.png" alt="" />
 		</div>
 	</div>
 
-	<div class="flex flex-col md:flex-row w-[80%] gap-2 rounded">
+	<div class="flex w-[80%] flex-col gap-4 rounded md:flex-row">
 		<div class="flex-1">
 			<div class="flex">
 				<button
@@ -68,7 +68,7 @@
 					}}>Login</button
 				>
 			</div>
-			<div class="flex bg-mongoose-200 rounded-b-xl">
+			<div class="flex rounded-b-xl bg-mongoose-200">
 				<div class="flex h-[40vh] w-full items-center px-10">
 					<div class="flex p-10">
 						<img src="/favicon.png" alt="" />
@@ -77,12 +77,12 @@
 						{#if register}
 							<div class="form-container">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
-								<!-- <input
+								<input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="text"
 									bind:value={username}
 									placeholder="Username"
-								/> -->
+								/>
 								<input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="email"
@@ -135,12 +135,15 @@
 			</div>
 		</div>
 		<div class="flex flex-1 flex-col rounded-xl bg-mongoose-400">
-			<p class="w-full rounded-t-xl bg-mongoose-800 p-5 text-white font-bold text-center text-2xl">{slideTitle[slideIndex]}</p>
+			<p class="w-full rounded-t-xl bg-mongoose-500 p-5 text-center text-2xl font-bold text-white">
+				{slideTitle[slideIndex]}
+			</p>
 			<div class="flex flex-1">
 				<div class="flex h-full items-center justify-center p-1">
 					<button
 						on:click={() => changeSlide(-1)}
-						class="cursor-pointer rounded-md  transition bg-white hover:bg-slate-100 active:bg-slate-200 p-2 ml-4 text-xl text-mongoose-800">❮</button
+						class="ml-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
+						>❮</button
 					>
 				</div>
 				<div class="flex-1 overflow-y-auto text-white">
@@ -148,14 +151,14 @@
 						<!-- Card 1: Rules -->
 						<div class="w-full">
 							<div class="h-250 flex flex-col items-center justify-center p-5">
-								<p class="">
-									เกมนี้จะมีรูปแบบการเล่นที่ใกล้เคียงกับเกม Tic-Tac-Toe
-									ปกติแต่จะมีตารางแบ่งเป็นตารางย่อยเล็กๆ 9 ตาราง ตารางละ 3x3 โดยเราจะสุ่มช่องที่มี
-									Items พิเศษอยู่ โดยผู้เล่นจะเลือกลง X/O ในช่องไหนก็ได้
-									เมื่อผู้เล่นชนะในช่องเล็กแล้วจะกลายเป็น X/O ในช่องใหญ่ เมื่อผู้เล่นชนะในช่องที่มี
-									skill พิเศษผู้เล่นก็สามารถใช้ Skill ในรอบถัดไปได้
-									แต่ผู้เล่นจะไม่สามารถเก็บสิทธินี้ไปใช้ในรอบต่อต่อไปได้
-									เกมจะจบลงต่อเมื่อผู้เล่นฝ่ายใดฝ่ายหนึ่งชนะในช่องใหญ่
+								<p class=" text-xl px-1 py-3">
+									This game have gameplay similar to the normal Tic-Tac-Toe game, but there will be
+									a grid divided into 9 small grids 3x3 per grid. game will randomly select squares
+									with special items, which the player will select X/O on any cell When a player win
+									in a small grids, it becomes X/O in a large grid. When a player win in a grids
+									with a special skill, the player can use that skill in the next round. But players
+									will not be able to collect this right to use in the next round. The game ends
+									when one player wins the big grid.
 								</p>
 							</div>
 						</div>
@@ -215,7 +218,8 @@
 				<div class="flex h-full items-center justify-center p-1">
 					<button
 						on:click={() => changeSlide(1)}
-						class="cursor-pointer rounded-md transition bg-white hover:bg-slate-100 active:bg-slate-200 p-2 mr-4 text-xl text-mongoose-800">❯</button
+						class="mr-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
+						>❯</button
 					>
 				</div>
 			</div>
