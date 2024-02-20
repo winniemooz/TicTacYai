@@ -45,7 +45,9 @@
 	}
 </script>
 
-<div class="font-fredoka flex min-h-dvh w-full flex-col items-center justify-center bg-mongoose-300">
+<div
+	class="flex min-h-dvh w-full flex-col items-center justify-center bg-mongoose-300 font-fredoka"
+>
 	<div class="flex w-full justify-center pb-5">
 		<div class="w-3/4 md:w-1/2">
 			<a href="/home">
@@ -141,7 +143,7 @@
 				{slideTitle[slideIndex]}
 			</p>
 			<div class="flex flex-1">
-				<div class="flex h-auto md:h-full items-center justify-center p-1">
+				<div class="flex h-auto items-center justify-center p-1 md:h-full">
 					<button
 						on:click={() => changeSlide(-1)}
 						class="ml-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
@@ -153,7 +155,7 @@
 						<!-- Card 1: Rules -->
 						<div class="w-full">
 							<div class="h-250 flex flex-col items-center justify-center p-5">
-								<p class=" text-xl px-1 py-3">
+								<p class=" px-1 py-3 text-xl">
 									This game have gameplay similar to the normal Tic-Tac-Toe game, but there will be
 									a grid divided into 9 small grids 3x3 per grid. game will randomly select squares
 									with special items, which the player will select X/O on any cell When a player win
@@ -168,24 +170,38 @@
 
 					{#if slideIndex == 2}
 						<!-- Card 2: Characters -->
-						<div class="w-full">
-							<div class="flex flex-col items-center p-5">
-								<div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-									<img src="pig.png" alt="Character 1" class="h-50 w-auto max-w-full rounded-lg" />
-									<p class="w-2/3">
-										เมื่อผู้เล่นชนะในช่องใหญ่มีโอกาส 50% ในการได้สุ่ม Skill หากผู้เล่นยังไม่ได้รับ
-										Skill เลย
-									</p>
-								</div>
-								<div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-									<img src="cat.png" alt="Character 2" class="h-50 w-auto max-w-full rounded-lg" />
-									<p class="w-2/3">เมื่อฝ่ายตรงข้ามชนะ 2 ช่องใหญ่ผู้เล่นจะได้สุ่ม Skill 1 ครั้ง</p>
-								</div>
-								<div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-									<img src="dog.png" alt="Character 3" class="h-50 w-auto max-w-full rounded-lg" />
-									<p class="w-2/3">
-										ผู้เล่นมีโอกาส 25% ในการขโมย Skill เมื่อฝั่งตรงข้ามได้รับ Skill (ครั้งเดียว)
-									</p>
+						<div class="h-full w-full">
+							<div class="flex h-full flex-row items-center justify-center py-5 text-center">
+								<div class="flex gap-3">
+									<div class="mb-8 flex w-full flex-col items-center justify-start gap-8">
+										<img
+											src="/piglet.png"
+											alt="Character 1"
+											class="h-50 w-auto max-w-full rounded-lg"
+										/>
+										<p class="">
+											เมื่อผู้เล่นชนะในช่องใหญ่มีโอกาส 50% ในการได้สุ่ม Skill หากผู้เล่นยังไม่ได้รับ
+											Skill เลย
+										</p>
+									</div>
+									<div class="mb-8 flex w-full flex-col items-center justify-start gap-8">
+										<img
+											src="/Kitty.png"
+											alt="Character 2"
+											class="h-50 w-auto max-w-full rounded-lg"
+										/>
+										<p class="">เมื่อฝ่ายตรงข้ามชนะ 2 ช่องใหญ่ผู้เล่นจะได้สุ่ม Skill 1 ครั้ง</p>
+									</div>
+									<div class=" mb-8 flex w-full flex-col items-center justify-start gap-8">
+										<img
+											src="/Puppy.png"
+											alt="Character 3"
+											class="h-50 w-auto max-w-full rounded-lg"
+										/>
+										<p class="">
+											ผู้เล่นมีโอกาส 25% ในการขโมย Skill เมื่อฝั่งตรงข้ามได้รับ Skill (ครั้งเดียว)
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -193,31 +209,39 @@
 
 					{#if slideIndex == 3}
 						<!-- Card 3: Special Skills -->
-						<div class="w-full">
-							<div class="flex flex-col items-center p-5">
-								<div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-									<img src="star.png" alt="Skill 1" class="h-50 w-auto max-w-full rounded-lg" />
-									<p class="w-2/3">Star ผู้เล่นสามารถวางทับหมากของฝ่ายตรงข้ามได้</p>
-								</div>
-								<div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-									<img src="timer.png" alt="Skill 2" class="h-50 w-auto max-w-full rounded-lg" />
-									<p class="w-2/3">
-										Timer ลดเวลาการเล่นใน turn ต่อไปของฝ่ายตรงข้ามเหลือแค่ 3 วินาที
-									</p>
-								</div>
-								<div class="mx-auto mb-8 flex w-full items-center justify-start gap-8">
-									<img
-										src="no-stopping.png"
-										alt="Skill 3"
-										class="h-50 w-auto max-w-full rounded-lg"
-									/>
-									<p class="w-2/3">Stop ห้ามผู้เล่นฝ่ายตรงเล่นใน turn ต่อไป</p>
+						<div class="h-full w-full">
+							<div class="flex h-full flex-row items-center justify-center p-5 text-center">
+								<div class="flex gap-3">
+									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
+										<img
+											src="star.png"
+											alt="Skill 1"
+											class="h-50 aspect-square w-24 max-w-full rounded-lg"
+										/>
+										<p class="">Star ผู้เล่นสามารถวางทับหมากของฝ่ายตรงข้ามได้</p>
+									</div>
+									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
+										<img
+											src="Timer.png"
+											alt="Skill 2"
+											class="h-50 aspect-square w-24 max-w-full rounded-lg"
+										/>
+										<p class="">Timer ลดเวลาการเล่นใน turn ต่อไปของฝ่ายตรงข้ามเหลือแค่ 3 วินาที</p>
+									</div>
+									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
+										<img
+											src="no-stopping.png"
+											alt="Skill 3"
+											class="h-50 aspect-square w-24 max-w-full rounded-lg"
+										/>
+										<p class="">Stop ห้ามผู้เล่นฝ่ายตรงเล่นใน turn ต่อไป</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					{/if}
 				</div>
-				<div class="flex h-auto md:h-full items-center justify-center p-1">
+				<div class="flex h-auto items-center justify-center p-1 md:h-full">
 					<button
 						on:click={() => changeSlide(1)}
 						class="mr-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
