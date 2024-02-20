@@ -2,7 +2,7 @@
 	import { authHandlers } from '../stores/authStore';
 
 	let register = false;
-	let username = '';
+	// let username = '';
 	let email = '';
 	let password = '';
 	let confirmpassword = '';
@@ -79,12 +79,12 @@
 						{#if register}
 							<div class="form-container">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
-								<input
+								<!-- <input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="text"
 									bind:value={username}
 									placeholder="Username"
-								/>
+								/> -->
 								<input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="email"
