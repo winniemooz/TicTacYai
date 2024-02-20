@@ -42,9 +42,11 @@
 				class="button left rounded-full bg-[#5a4134] px-4 text-[#f2ece2]"
 				on:click={() => alert('Tutorial functionality not implemented')}>Tutorial</button
 			>
-			<button class="button right rounded-full bg-[#5a4134] px-4 text-[#f2ece2]" on:click={logout}
-				>Logout</button
+			<button class="button right rounded-full bg-[#5a4134] px-4 text-[#f2ece2]" 
+			><a href="/">Logout</a></button
 			>
+			<!-- on:click={logout} -->
+			
 		</div>
 	</div>
 </div>

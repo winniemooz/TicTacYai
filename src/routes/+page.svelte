@@ -48,7 +48,9 @@
 <div class="font-fredoka flex min-h-dvh w-full flex-col items-center justify-center bg-mongoose-300">
 	<div class="flex w-full justify-center pb-5">
 		<div class="w-3/4 md:w-1/2">
-			<img src="/logo.png" alt="" />
+			<a href="/home">
+				<img src="/logo.png" alt="" />
+			</a>
 		</div>
 	</div>
 
