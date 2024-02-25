@@ -46,7 +46,7 @@
 </script>
 
 <div
-	class="flex min-h-dvh w-full flex-col items-center justify-center bg-mongoose-300 font-fredoka"
+	class="body flex min-h-dvh w-full flex-col items-center justify-center bg-mongoose-300 font-fredoka"
 >
 	<div class="flex w-full justify-center pb-5">
 		<div class="w-3/4 md:w-1/2">
@@ -73,7 +73,7 @@
 				>
 			</div>
 			<div class="flex rounded-b-xl bg-mongoose-200">
-				<div class="flex h-[40vh] w-full items-center px-10">
+				<div class="forms-container flex h-[40vh] w-full items-center px-10">
 					<!-- <div class="flex p-10">
 						<img src="/favicon.png" alt="" />
 					</div> -->
@@ -138,32 +138,25 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex flex-1 flex-col rounded-xl bg-mongoose-400">
+		<div class="flex flex-1 flex-col overflow-y-auto rounded-xl bg-mongoose-100">
 			<p class="w-full rounded-t-xl bg-mongoose-500 p-5 text-center text-2xl font-bold text-white">
 				{slideTitle[slideIndex]}
 			</p>
 			<div class="flex flex-1">
-				<div class="flex h-auto items-center justify-center p-1 md:h-full">
+				<div class="arrow flex h-auto items-center justify-center p-1 md:h-full">
 					<button
 						on:click={() => changeSlide(-1)}
-						class="ml-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
+						class=" ml-4 cursor-pointer rounded-md p-2 text-xl text-mongoose-500 transition hover:text-mongoose-700 active:text-mongoose-400"
 						>❮</button
 					>
 				</div>
-				<div class="flex-1 overflow-y-auto text-white">
+				<div class="flex-1 overflow-y-auto text-sm font-medium text-mongoose-600 no-scrollbar">
 					{#if slideIndex == 1}
 						<!-- Card 1: Rules -->
 						<div class="w-full">
-							<div class="h-250 flex flex-col items-center justify-center p-5">
-								<p class=" px-1 py-3 text-xl">
-									This game have gameplay similar to the normal Tic-Tac-Toe game, but there will be
-									a grid divided into 9 small grids 3x3 per grid. game will randomly select squares
-									with special items, which the player will select X/O on any cell When a player win
-									in a small grids, it becomes X/O in a large grid. When a player win in a grids
-									with a special skill, the player can use that skill in the next round. But players
-									will not be able to collect this right to use in the next round. The game ends
-									when one player wins the big grid.
-								</p>
+							<div class="rules over-y-auto flex h-10 flex-col items-center justify-start p-5">
+								<img src="/Frame 36.png" alt="Rules" id="rule" />
+								<img src="/rule mobile.png" alt="rulemb" id="rule-mb" />
 							</div>
 						</div>
 					{/if}
@@ -171,35 +164,42 @@
 					{#if slideIndex == 2}
 						<!-- Card 2: Characters -->
 						<div class="h-full w-full">
-							<div class="flex h-full flex-row items-center justify-center py-5 text-center">
-								<div class="flex gap-3">
-									<div class="mb-8 flex w-full flex-col items-center justify-start gap-8">
+							<div class=" flex h-full flex-row items-center justify-center py-5 text-center">
+								<div class="characters flex gap-3">
+									<div class="mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
 											src="/piglet.png"
 											alt="Character 1"
-											class="h-50 w-auto max-w-full rounded-lg"
+											class="h-30 w-auto max-w-full rounded-lg"
 										/>
+										<h3 class="text-3xl text-red-400">PIGLET</h3>
 										<p class="">
-											เมื่อผู้เล่นชนะในช่องใหญ่มีโอกาส 50% ในการได้สุ่ม Skill หากผู้เล่นยังไม่ได้รับ
-											Skill เลย
+											When the player win in the small grid, there’s a 50% chance of getting a
+											random skill if the player didn’t received the skill yet in the game.
 										</p>
 									</div>
-									<div class="mb-8 flex w-full flex-col items-center justify-start gap-8">
+									<div class="mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
 											src="/Kitty.png"
 											alt="Character 2"
-											class="h-50 w-auto max-w-full rounded-lg"
+											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<p class="">เมื่อฝ่ายตรงข้ามชนะ 2 ช่องใหญ่ผู้เล่นจะได้สุ่ม Skill 1 ครั้ง</p>
+										<h3 class="text-3xl text-blue-400">KITTY</h3>
+										<p class="">
+											When the opponent wins 2 small grid, the player will receive a random Skill 1
+											time.<br />(once per game)
+										</p>
 									</div>
-									<div class=" mb-8 flex w-full flex-col items-center justify-start gap-8">
+									<div class=" mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
 											src="/Puppy.png"
 											alt="Character 3"
-											class="h-50 w-auto max-w-full rounded-lg"
+											class="h-30 w-auto max-w-full rounded-lg"
 										/>
+										<h3 class="text-3xl text-orange-400">PUPPY</h3>
 										<p class="">
-											ผู้เล่นมีโอกาส 25% ในการขโมย Skill เมื่อฝั่งตรงข้ามได้รับ Skill (ครั้งเดียว)
+											Player have a 25% chance to steal a Skill when their opponent gains a Skill.<br
+											/>(once per game)
 										</p>
 									</div>
 								</div>
@@ -211,14 +211,16 @@
 						<!-- Card 3: Special Skills -->
 						<div class="h-full w-full">
 							<div class="flex h-full flex-row items-center justify-center p-5 text-center">
-								<div class="flex gap-3">
+								<div class="skills flex gap-3">
 									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
 										<img
 											src="star.png"
 											alt="Skill 1"
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
-										<p class="">Star ผู้เล่นสามารถวางทับหมากของฝ่ายตรงข้ามได้</p>
+										<p class="">
+											Players can place there symbol on top of their opponent's symbol.
+										</p>
 									</div>
 									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
 										<img
@@ -226,7 +228,10 @@
 											alt="Skill 2"
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
-										<p class="">Timer ลดเวลาการเล่นใน turn ต่อไปของฝ่ายตรงข้ามเหลือแค่ 3 วินาที</p>
+										<p class="">
+											When the opponent wins 2 small grid, the player will receive a random Skill 1
+											time.(once per game)
+										</p>
 									</div>
 									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
 										<img
@@ -234,17 +239,17 @@
 											alt="Skill 3"
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
-										<p class="">Stop ห้ามผู้เล่นฝ่ายตรงเล่นใน turn ต่อไป</p>
+										<p class="">The next turn your opponent play time reduces to 3 seconds.</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					{/if}
 				</div>
-				<div class="flex h-auto items-center justify-center p-1 md:h-full">
+				<div class="arrow flex h-auto items-center justify-center p-1 md:h-full">
 					<button
 						on:click={() => changeSlide(1)}
-						class="mr-4 cursor-pointer rounded-md p-2 text-xl text-white transition hover:text-mongoose-700 active:text-mongoose-400"
+						class="mr-4 cursor-pointer rounded-md p-2 text-xl text-mongoose-500 transition hover:text-mongoose-700 active:text-mongoose-400"
 						>❯</button
 					>
 				</div>
@@ -252,3 +257,45 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	#rule-mb {
+		position: fixed;
+		visibility: hidden;
+	}
+	@media (max-width: 500px) {
+		.body {
+			justify-content: flex-start;
+			padding-top: 5vh;
+			padding-bottom: 5vh;
+		}
+		.rules {
+			height: auto;
+		}
+		#rule {
+			overflow-y: hidden;
+			position: absolute;
+			visibility: hidden;
+		}
+		#rule-mb {
+			width: 100%;
+			height: auto;
+			position: relative;
+			visibility: visible;
+		}
+		.forms-container {
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+			height: auto;
+		}
+		.arrow {
+			align-items: start;
+		}
+		.characters {
+			flex-direction: column;
+		}
+		.skills {
+			flex-direction: column;
+		}
+	}
+</style>
