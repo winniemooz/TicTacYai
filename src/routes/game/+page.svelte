@@ -1,8 +1,10 @@
-<body class="flex min-h-dvh w-full justify-between bg-mongoose-100 font-fredoka text-mongoose-700">
+<body
+	class="body flex min-h-dvh w-full justify-between bg-mongoose-100 font-fredoka text-mongoose-700"
+>
 	<div class="playerO flex flex-col items-start gap-10 p-16 text-5xl">
-		<h2>Player 1</h2>
+		<h2>Player1</h2>
 		<div class="flex flex-row items-center justify-center gap-12">
-			<div class="card border-8 border-gray-500 bg-gray-300">
+			<div class="card bg-gray-500">
 				<!-- Player 1 card content -->
 				<!-- Add your content here -->
 			</div>
@@ -213,18 +215,24 @@
 	</div>
 
 	<div class="playerX flex flex-col items-end gap-10 p-16 text-5xl">
-		<h2>Player 2</h2>
+		<h2>Player2</h2>
 		<div class="flex flex-row items-center justify-center gap-12">
 			<div class="player font-bold text-[#D18A8A]">X</div>
-			<div class="card border-8 border-gray-500 bg-gray-300">
+			<div class="card bg-gray-500">
 				<!-- Player 2 card content -->
 				<!-- Add your content here -->
 			</div>
 		</div>
 	</div>
+	<img src="/Arrow.png" alt="Arrow" id="arrow" />
 </body>
 
 <style>
+	#arrow {
+		visibility: hidden;
+		position: absolute;
+		top: 81%;
+	}
 	.playerX {
 		width: 20%;
 	}
@@ -295,5 +303,75 @@
 	}
 	.player {
 		font-size: 200px;
+	}
+	@media (max-width: 500px) {
+		.body {
+			margin: auto;
+			padding: 0;
+			justify-content: center;
+		}
+		.tic-tac-toe-cell {
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			cursor: pointer;
+		}
+		.playerO {
+			position: absolute;
+			align-items: center;
+			padding: 0;
+			top: 70%;
+			left: 15%;
+		}
+		.playerX {
+			position: absolute;
+			align-items: center;
+			padding: 0;
+			top: 70%;
+			right: 15%;
+		}
+		.t1 {
+			border-top-left-radius: 20px;
+		}
+		.t3 {
+			border-top-right-radius: 20px;
+		}
+		.t7 {
+			border-bottom-left-radius: 20px;
+		}
+		.t9 {
+			border-bottom-right-radius: 20px;
+		}
+		#t1-r1-c1 {
+			border-top-left-radius: 20px;
+		}
+		#t3-r1-c3 {
+			border-top-right-radius: 20px;
+		}
+		#t7-r3-c1 {
+			border-bottom-left-radius: 20px;
+		}
+		#t9-r3-c3 {
+			border-bottom-right-radius: 20px;
+		}
+		.tic-tac-toe {
+			border-radius: 20px;
+			outline: 5px solid #73593b;
+		}
+		h2 {
+			font-size: 1.2rem;
+		}
+		.card {
+			width: 100px;
+			height: 100px;
+		}
+		.player {
+			position: absolute;
+			top: 100%;
+			font-size: 2rem;
+		}
+		#arrow {
+			visibility: visible;
+		}
 	}
 </style>
