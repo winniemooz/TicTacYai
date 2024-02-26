@@ -2,7 +2,7 @@
 	import { authHandlers } from '../stores/authStore';
 
 	let register = false;
-	// let username = '';
+	let username = '';
 	let email = '';
 	let password = '';
 	let confirmpassword = '';
@@ -60,13 +60,13 @@
 		<div class="flex-1">
 			<div class="flex">
 				<button
-					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${register ? 'bg-mongoose-200 text-xl font-bold' : 'bg-mongoose-100'}`}
+					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${register ? 'bg-mongoose-200 text-3xl font-bold' : 'bg-mongoose-100'}`}
 					on:click={() => {
 						register = true;
 					}}>Register</button
 				>
 				<button
-					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${!register ? 'bg-mongoose-200 text-xl font-bold' : 'bg-mongoose-100'}`}
+					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${!register ? 'bg-mongoose-200 text-3xl font-bold' : 'bg-mongoose-100'}`}
 					on:click={() => {
 						register = false;
 					}}>Login</button
@@ -74,19 +74,16 @@
 			</div>
 			<div class="flex rounded-b-xl bg-mongoose-200">
 				<div class="forms-container flex h-[40vh] w-full items-center px-10">
-					<!-- <div class="flex p-10">
-						<img src="/favicon.png" alt="" />
-					</div> -->
 					<div class="w-full flex-col px-0 md:px-10">
 						{#if register}
 							<div class="form-container">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
-								<!-- <input
+								<input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="text"
 									bind:value={username}
 									placeholder="Username"
-								/> -->
+								/>
 								<input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="email"
@@ -165,14 +162,14 @@
 						<!-- Card 2: Characters -->
 						<div class="h-full w-full">
 							<div class=" flex h-full flex-row items-center justify-center py-5 text-center">
-								<div class="characters flex gap-3">
+								<div class="characters flex gap-6">
 									<div class="mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
 											src="/piglet.png"
 											alt="Character 1"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<h3 class="text-3xl text-red-400">PIGLET</h3>
+										<h3 class="text-3xl text-red-400 font-bold">PIGLET</h3>
 										<p class="">
 											When the player win in the small grid, there’s a 50% chance of getting a
 											random skill if the player didn’t received the skill yet in the game.
@@ -184,7 +181,7 @@
 											alt="Character 2"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<h3 class="text-3xl text-blue-400">KITTY</h3>
+										<h3 class="text-3xl text-blue-400 font-bold">KITTY</h3>
 										<p class="">
 											When the opponent wins 2 small grid, the player will receive a random Skill 1
 											time.<br />(once per game)
@@ -196,7 +193,7 @@
 											alt="Character 3"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<h3 class="text-3xl text-orange-400">PUPPY</h3>
+										<h3 class="text-3xl text-orange-400 font-bold">PUPPY</h3>
 										<p class="">
 											Player have a 25% chance to steal a Skill when their opponent gains a Skill.<br
 											/>(once per game)

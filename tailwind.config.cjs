@@ -21,7 +21,8 @@ const config = {
 			},
 			fontFamily: {
 				kanit: ["Kanit", "sans-serif"],
-				fredoka: ["Fredoka", "sans-serif"]
+				fredoka: ["Fredoka", "sans-serif"],
+				copyduck: ["Copyduck"]
 			}
 		},
 	},
