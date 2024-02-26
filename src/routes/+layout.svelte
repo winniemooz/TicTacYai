@@ -9,7 +9,13 @@
 			console.log(user)
 			authStore.update((curr) => {
 				return {...curr, isLoading: false, currentUser:user}
-			})
+			});
+
+			if (browser) {
+				if (!authStore.currentUser && !authStore.isLoading && window.location.href !== '/') {
+					window.location.href = '/';
+				}
+			}
 		})
 	})
 </script>

@@ -44,7 +44,7 @@
 			}
 		}
 		if ($authStore.currentUser) {
-			window.location.href = '/home'
+			window.location.href = '/home';
 		}
 	}
 </script>

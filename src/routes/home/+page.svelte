@@ -1,4 +1,6 @@
 <script>
+	import { authHandlers } from "../../stores/authStore";
+
 	function logout() {
 		// Handle logout logic here
 		alert('Logout functionality not implemented in this example.');
@@ -30,7 +32,7 @@
 				>
 				<a href="/">
 					<button
-						class="button logout mx-auto h-20 rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2]"
+						class="button logout mx-auto h-20 rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2]" on:click={authHandlers.logout}
 						>Logout</button
 					></a
 				>
