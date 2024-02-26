@@ -1,5 +1,6 @@
 <script>
 	import { authHandlers, authStore } from '../stores/authStore';
+	import { slide } from "svelte/transition";
 
 	let register = false;
 	let username = '';
@@ -8,6 +9,7 @@
 	let confirmpassword = '';
 	let slideIndex = 1;
 	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+	let emailErrorMessage = null;
 
 	const slideTitle = {
 		1: 'Rules',
@@ -26,6 +28,10 @@
 	};
 
 	async function handleSubmit() {
+		emailErrorMessage = null;
+		if (email.length == 0) {
+			emailErrorMessage = "Email is required";
+		}
 		if (!email || !password || (register && !confirmpassword)) {
 			return;
 		}
@@ -33,6 +39,7 @@
 		if (register && password === confirmpassword) {
 			try {
 				await authHandlers.signup(email, password);
+				password = null;
 			} catch (err) {
 				console.log(err);
 			}
@@ -45,8 +52,8 @@
 		}
 		if ($authStore.currentUser) {
 			window.location.href = '/home';
-			console.log('Login Complete')
 		}
+
 	}
 </script>
 
@@ -55,9 +62,7 @@
 >
 	<div class="flex w-full justify-center pb-5">
 		<div class="w-3/4 md:w-1/2">
-			<a href="/home">
-				<img src="/logo.png" alt="" />
-			</a>
+			<img src="/logo.png" alt="" />
 		</div>
 	</div>
 
@@ -81,41 +86,49 @@
 				<div class="forms-container flex h-[40vh] w-full items-center px-10">
 					<div class="w-full flex-col px-0 md:px-10">
 						{#if register}
-							<div class="form-container">
+							<div class="form-container  space-y-4">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
-								<input
-									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
-									type="text"
-									bind:value={username}
-									placeholder="Username"
-								/>
-								<input
-									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
-									type="email"
-									bind:value={email}
-									placeholder="Email"
-								/>
-								{#if (email.match(validRegex))}
-									<p>Good</p>
-								{:else}
-									<p>Invalid Email</p>
-								{/if}
-								<input
-									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
-									type="password"
-									bind:value={password}
-									placeholder="Password"
-								/>
-								<input
-									class="mb-8 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
-									type="password"
-									bind:value={confirmpassword}
-									placeholder="Confirm Password"
-								/>
+								<div>
+									<input
+										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
+										type="text"
+										bind:value={username}
+										placeholder="Username"
+									/>
+								</div>
+								<div>
+									<input
+										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
+										type="email"
+										bind:value={email}
+										placeholder="Email"
+									/>
+									{#if emailErrorMessage}
+									<p transition:slide={{ duration: 100 }} class="text-red-500" >
+										{emailErrorMessage}
+									</p>
+									{/if}
+								</div>
+								<div>
+									<input
+										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
+										type="password"
+										bind:value={password}
+										placeholder="Password"
+									/>
+								</div>
+								<div>
+									<input
+										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
+										type="password"
+										bind:value={confirmpassword}
+										placeholder="Confirm Password"
+									/>
+								</div>
 							</div>
 							<button
 								on:click={handleSubmit}
-								class="rounded-full bg-mongoose-800 px-8 py-2 text-white transition hover:bg-mongoose-600 active:bg-mongoose-900"
+								class="mt-8 rounded-full bg-mongoose-800 px-8 py-2 text-white transition hover:bg-mongoose-600 active:bg-mongoose-900"
 								>Register</button
 							>
 						{:else}
@@ -176,7 +189,7 @@
 								<div class="characters flex gap-6">
 									<div class="mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
-											src="/piglet.png"
+											src="/Piglet.png"
 											alt="Character 1"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
