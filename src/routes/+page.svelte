@@ -45,6 +45,7 @@
 		}
 		if ($authStore.currentUser) {
 			window.location.href = '/home';
+			console.log('Login Complete')
 		}
 	}
 </script>
