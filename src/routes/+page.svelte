@@ -1,5 +1,5 @@
 <script>
-	import { authHandlers } from '../stores/authStore';
+	import { authHandlers, authStore } from '../stores/authStore';
 
 	let register = false;
 	let username = '';
@@ -7,6 +7,7 @@
 	let password = '';
 	let confirmpassword = '';
 	let slideIndex = 1;
+	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 	const slideTitle = {
 		1: 'Rules',
@@ -41,6 +42,9 @@
 			} catch (err) {
 				console.log(err);
 			}
+		}
+		if ($authStore.currentUser) {
+			window.location.href = '/home'
 		}
 	}
 </script>
@@ -90,6 +94,11 @@
 									bind:value={email}
 									placeholder="Email"
 								/>
+								{#if (email.match(validRegex))}
+									<p>Good</p>
+								{:else}
+									<p>Invalid Email</p>
+								{/if}
 								<input
 									class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 									type="password"
@@ -117,6 +126,7 @@
 										bind:value={email}
 										placeholder="Email"
 									/>
+									<p id="feedback-msg-login"></p>
 								</div>
 								<input
 									class="mb-8 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
@@ -136,7 +146,7 @@
 			</div>
 		</div>
 		<div class="flex flex-1 flex-col overflow-y-auto rounded-xl bg-mongoose-100">
-			<p class="w-full rounded-t-xl bg-mongoose-500 p-5 text-center text-2xl font-bold text-white">
+			<p class="w-full rounded-t-xl bg-mongoose-500 p-5 text-center text-3xl font-bold text-white">
 				{slideTitle[slideIndex]}
 			</p>
 			<div class="flex flex-1">
