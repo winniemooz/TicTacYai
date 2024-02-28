@@ -36,7 +36,7 @@
 			<p class="mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
 				CHARACTER
 			</p>
-			<div class="char mx-4 grid h-[45vh] w-80 grid-cols-3 gap-8 rounded-xl bg-mongoose-200 px-6">
+			<div class="char mx-4 grid h-[45vh] grid-cols-3 gap-8 rounded-xl bg-mongoose-200 px-6">
 				<div class="flex flex-col items-center justify-center text-center">
 					<img src="/piglet.png" alt="" />
 					<p class=" mt-4 font-copyduck text-4xl text-[#FF6A6A]">PIGLET</p>
@@ -64,7 +64,7 @@
 			</div>
 		</div>
 		<div class="flex w-[40%] flex-col items-center">
-			<p class="mb-4 flex w-80 text-center text-5xl font-bold tracking-wide text-mongoose-700">
+			<p class="w-100 mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
 				SPECIAL SKILLS
 			</p>
 			<div class="skill mx-4 grid h-[45vh] grid-cols-3 gap-8 rounded-xl bg-mongoose-200 px-6">
@@ -92,14 +92,16 @@
 			</div>
 		</div>
 	</div>
-	<button
-		class="fixed bottom-0 left-0 m-3 h-[4vh] w-[20%] rounded-full bg-mongoose-900 text-xl font-medium text-white sm:m-6 sm:h-[8vh] sm:w-[10%] sm:text-3xl"
-		>Back</button
-	>
+	<a href="/home"
+		><button
+			class="fixed bottom-0 left-0 m-3 h-[4vh] w-[20%] rounded-full bg-mongoose-900 text-xl font-medium text-white sm:m-6 sm:h-[8vh] sm:w-[10%] sm:text-3xl"
+			>Back</button
+		>
+	</a>
 </div>
 
 <style>
-	@media (max-width: 450px) {
+	@media (max-width: 500px) {
 		.rule {
 			display: flex;
 			flex-direction: column;

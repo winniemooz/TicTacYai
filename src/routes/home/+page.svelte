@@ -1,5 +1,5 @@
 <script>
-	import { authHandlers } from "../../stores/authStore";
+	import { authHandlers } from '../../stores/authStore';
 
 	function logout() {
 		// Handle logout logic here
@@ -9,79 +9,57 @@
 
 <div class="bg-f4f4f4 flex h-screen flex-col items-center bg-[#f2ece2] font-fredoka">
 	<div
-		id="container"
-		class="flex h-full w-full flex-col justify-between rounded-lg bg-white text-center shadow-md"
+		class="flex h-full w-full flex-col items-center justify-start rounded-lg bg-[#f2ece2] text-center shadow-md"
 	>
-		<img id="logo" src="/logo2.png" alt="" srcset="" />
-		<div id="middle-content">
-			<div class="button-container-main mx-auto flex flex-col justify-center gap-3">
+		<img class="w-[100%] py-10 sm:w-[65%] lg:w-[50%]" src="/logo2.png" alt="" srcset="" />
+		<div class="middle-content flex w-[50%] flex-col gap-3 lg:w-[35%]">
+			<button
+				class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
+				on:click={() => (window.location.href = 'quickplay.html')}>Quick Play</button
+			>
+			<button
+				class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
+				on:click={() => (window.location.href = 'joinwithcode.html')}>Join with Code</button
+			>
+			<a href="/lobby"
+				><button
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
+				>
+					Create Room</button
+				></a
+			>
+			<a href="/">
 				<button
-					class="button mx-auto h-20 rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800"
-					on:click={() => (window.location.href = 'quickplay.html')}>Quick Play</button
-				>
-				<button
-					class="button mx-auto h-20 rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800"
-					on:click={() => (window.location.href = 'joinwithcode.html')}>Join with Code</button
-				>
-				<a href="/lobby"
-					><button
-						class="button mx-auto h-20 rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800"
-					>
-						Create Room</button
-					></a
-				>
-				<a href="/">
-					<button
-						class="button logout mx-auto h-20 rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2]" on:click={authHandlers.logout}
-						>Logout</button
-					></a
-				>
-			</div>
+					class="button logout mx-auto h-16 w-full rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2] sm:h-20"
+					on:click={authHandlers.logout}>Logout</button
+				></a
+			>
 		</div>
-
-		<div class="button-container-bottom flex justify-between">
-			<button
-				class="button lek mx-auto flex items-center gap-2 rounded-full bg-[#5a4134] px-6 py-4 text-2xl text-[#f2ece2]"
+		<div class="fixed bottom-0 flex w-full flex-row justify-between">
+			<a href="/profile"
+				><button
+					class="button lek mx-auto flex items-center gap-2 rounded-full bg-[#5a4134] px-6 py-4 text-2xl text-[#f2ece2]"
+				>
+					<img src="/human-icon.png" alt="" />View Profile</button
+				>
+			</a>
+			<a
+				href="/tutorial
+			"
 			>
-				<img src="/human-icon.png" alt="" />View Profile</button
+				<button
+					class="button lek mx-auto flex items-center gap-2 rounded-full bg-[#5a4134] px-6 py-4 text-2xl text-[#f2ece2]"
+					><img src="/tutorial-icon.png" alt="" />Tutorial</button
+				></a
 			>
-			<button
-				class="button lek mx-auto flex items-center gap-2 rounded-full bg-[#5a4134] px-6 py-4 text-2xl text-[#f2ece2]"
-				><img src="/tutorial-icon.png" alt="" />Tutorial</button
-			>
-
 			<!-- on:click={logout} -->
 		</div>
 	</div>
 </div>
 
 <style>
-	#logo {
-		position: absolute;
-		top: 4%;
-		left: 20%;
-		width: 60%;
-	}
-	#container {
-		padding-top: 40vh;
-		background-color: #f2ece2;
-		border-radius: 5px;
-		text-align: center;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		height: 100%;
-	}
-
-	.button-container-main {
-		width: 40%;
-		height: 100%;
-	}
-
 	.button {
-		width: 100%;
-		margin: 15px;
+		margin: 5px;
 		cursor: pointer;
 		border: none;
 		text-align: center;
@@ -95,30 +73,15 @@
 		justify-content: center;
 	}
 
-	@media (max-width: 500px) {
-		#logo {
-			top: 10%;
-			left: 0%;
-			width: 100%;
-		}
+	@media (max-width: 640px) {
 		.button {
 			margin: 0;
 			padding: 10px 10px;
-			font-size: 1.5rem;
-		}
-		#container {
-			padding-top: 30vh;
-		}
-		.button-container-main {
-			width: 70%;
-			height: 100%;
-		}
-		.button-container-bottom {
-			margin: 10px;
-			gap: 20px;
+			font-size: 1.3rem;
 		}
 		.button.lek {
 			font-size: 1.1rem;
+			width: 150px;
 		}
 	}
 </style>
