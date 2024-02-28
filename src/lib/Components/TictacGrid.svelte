@@ -1,8 +1,8 @@
 <script>
   import TictacButton from "$lib/Components/TictacButton.svelte";
-  import { turn } from "$lib/Stores/Turn.js";
-  import { boardYai } from "$lib/Stores/boardYai.js";
-  import { checkWinner } from "$lib/utils/CheckWinner.js";
+  import { turn } from "$lib/stores/turn.js";
+  import { boardYai } from "$lib/stores/boardYai.js";
+  import { checkWinner } from "$lib/utils/checkWinner.js";
   import { scale } from "svelte/transition";
   let winner = null;
   let board = Array(9).fill("");
