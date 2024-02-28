@@ -9,7 +9,10 @@
 	let confirmpassword = '';
 	let slideIndex = 1;
 	var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-	let emailErrorMessage = null;
+	let emailErrorMsg = '';
+	let passwordErrorMsg = '';
+	let confirmpasswordMsg = '';
+	let usernameErrorMsg = '';
 
 	const slideTitle = {
 		1: 'Rules',
@@ -27,11 +30,38 @@
 		}
 	};
 
+	const resetForm = () => {
+		username = '';
+		email = '';
+		password = '';
+		confirmpassword = '';
+		emailErrorMsg = '';
+		passwordErrorMsg = '';
+		confirmpasswordMsg = '';
+		usernameErrorMsg = '';
+	};
+
 	async function handleSubmit() {
-		emailErrorMessage = null;
-		if (email.length == 0) {
-			emailErrorMessage = "Email is required";
+		resetForm();
+
+		if(username.length > 20){
+			usernameErrorMsg = "Username required less than 20 characters."
+		}else if(username.length < 6){
+			usernameErrorMsg = "Username required at least 6 characters."
 		}
+		if (!email.match(validRegex)) {
+			emailErrorMsg = "Invalid Email.";
+		}
+		if (password.length < 8) {
+			passwordErrorMsg = "Password required at least 8 characters.";
+		}
+		if (password != confirmpassword){
+			confirmpasswordMsg = "Password doesn't match."
+		}else {
+			confirmpasswordMsg = "Please confirm your password."
+		}
+
+
 		if (!email || !password || (register && !confirmpassword)) {
 			return;
 		}
@@ -72,12 +102,14 @@
 				<button
 					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${register ? 'bg-mongoose-200 text-3xl font-bold' : 'bg-mongoose-100'}`}
 					on:click={() => {
+						resetForm(),
 						register = true;
 					}}>Register</button
 				>
 				<button
 					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${!register ? 'bg-mongoose-200 text-3xl font-bold' : 'bg-mongoose-100'}`}
 					on:click={() => {
+						resetForm(),
 						register = false;
 					}}>Login</button
 				>
@@ -93,19 +125,24 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="text"
 										bind:value={username}
-										placeholder="Username"
+										placeholder="Username" required
 									/>
+									{#if usernameErrorMsg}
+									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+										{usernameErrorMsg}
+									</p>
+									{/if}
 								</div>
 								<div>
 									<input
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="email"
 										bind:value={email}
-										placeholder="Email"
+										placeholder="Email" required
 									/>
-									{#if emailErrorMessage}
-									<p transition:slide={{ duration: 100 }} class="text-red-500" >
-										{emailErrorMessage}
+									{#if emailErrorMsg}
+									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+										{emailErrorMsg}
 									</p>
 									{/if}
 								</div>
@@ -114,16 +151,26 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="password"
 										bind:value={password}
-										placeholder="Password"
+										placeholder="Password" required
 									/>
+									{#if passwordErrorMsg}
+									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+										{passwordErrorMsg}
+									</p>
+									{/if}
 								</div>
 								<div>
 									<input
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="password"
 										bind:value={confirmpassword}
-										placeholder="Confirm Password"
+										placeholder="Confirm Password" required
 									/>
+									{#if confirmpasswordMsg}
+									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+										{confirmpasswordMsg}
+									</p>
+									{/if}
 								</div>
 							</div>
 							<button
@@ -132,26 +179,37 @@
 								>Register</button
 							>
 						{:else}
-							<div class="form-container">
-								<div class="flex">
+							<div class="form-container space-y-4">
+								<div>
 									<input
-										class="mb-4 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
+										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="text"
 										bind:value={email}
-										placeholder="Email"
+										placeholder="Email" required
 									/>
-									<p id="feedback-msg-login"></p>
+									{#if emailErrorMsg}
+									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+										{emailErrorMsg}
+									</p>
+									{/if}
 								</div>
-								<input
-									class="mb-8 w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
-									type="password"
-									bind:value={password}
-									placeholder="Password"
-								/>
+								<div>
+									<input
+										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
+										type="password"
+										bind:value={password}
+										placeholder="Password" required
+									/>
+									{#if passwordErrorMsg}
+										<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+											{passwordErrorMsg}
+										</p>
+									{/if}
+								</div>
 							</div>
 							<button
 								on:click={handleSubmit}
-								class="rounded-full bg-mongoose-800 px-8 py-2 text-white transition hover:bg-mongoose-600 active:bg-mongoose-900"
+								class="mt-8 rounded-full bg-mongoose-800 px-8 py-2 text-white transition hover:bg-mongoose-600 active:bg-mongoose-900"
 								>Login</button
 							>
 						{/if}
