@@ -42,7 +42,6 @@
 	};
 
 	async function handleSubmit() {
-		resetForm();
 
 		if(username.length > 20){
 			usernameErrorMsg = "Username required less than 20 characters."
@@ -82,6 +81,7 @@
 		}
 		if ($authStore.currentUser) {
 			window.location.href = '/home';
+			resetForm();
 		}
 
 	}
