@@ -1,7 +1,7 @@
 <script>
   import Tictac from "$lib/Components/Tictac.svelte";
   import { boardYai } from "$lib/stores/boardYai.js";
-  import { checkWinner } from "$lib/utils/CheckWinner.js";
+  import { checkWinner } from "$lib/utils/checkWinner.js";
   import { turn } from "$lib/stores/turn.js";
   let winner = null;
   $: winner = checkWinner($boardYai);
