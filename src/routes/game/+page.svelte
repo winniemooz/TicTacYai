@@ -1,8 +1,8 @@
 <script>
   import Tictac from "$lib/Components/Tictac.svelte";
-  import { boardYai } from "$lib/Stores/boardYai.js";
+  import { boardYai } from "$lib/stores/boardYai.js";
   import { checkWinner } from "$lib/utils/CheckWinner.js";
-  import { turn } from "$lib/Stores/Turn.js";
+  import { turn } from "$lib/stores/turn.js";
   let winner = null;
   $: winner = checkWinner($boardYai);
   $: isDraw = $boardYai.every((cell) => cell !== "");
