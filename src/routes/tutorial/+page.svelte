@@ -1,7 +1,7 @@
 <div class="body flex min-h-dvh w-full flex-col bg-mongoose-100 font-fredoka">
 	<div class="flex flex-col items-center justify-center">
 		<img src="/logo2.png" alt="" class=" mb-12 mt-12 w-[90%] sm:w-[50%]" />
-		<div class="rule mx-[11%] grid grid-cols-4 gap-20">
+		<div class="rule mx-[11%] grid grid-cols-2 gap-20 lg:grid-cols-4">
 			<div class="flex flex-col items-center text-center">
 				<img src="/tutorial-1.png" alt="" class="w-[90%]" />
 				<p class="my-4 text-xl font-medium text-mongoose-800">
@@ -31,8 +31,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="char-skills mx-[10%] my-[4vh] flex">
-		<div class="flex w-[60%] flex-col items-center">
+	<div class="char-skills mx-[10%] my-[4vh] flex flex-col items-center gap-10 lg:flex-row">
+		<div class="flex flex-col items-center lg:w-[60%]">
 			<p class="mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
 				CHARACTER
 			</p>
@@ -63,7 +63,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex w-[40%] flex-col items-center">
+		<div class="flex flex-col items-center lg:w-[40%]">
 			<p class="w-100 mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
 				SPECIAL SKILLS
 			</p>
@@ -101,7 +101,7 @@
 </div>
 
 <style>
-	@media (max-width: 500px) {
+	@media (max-width: 640px) {
 		.rule {
 			display: flex;
 			flex-direction: column;
