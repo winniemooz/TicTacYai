@@ -1,9 +1,9 @@
 <div
-	class="body flex min-h-dvh w-full flex-col items-center justify-between bg-mongoose-100 font-fredoka text-mongoose-700"
+	class="flex min-h-dvh w-full flex-col items-center justify-between bg-mongoose-100 font-fredoka text-mongoose-700"
 >
 	<h1 class="code mt-10 text-8xl font-bold tracking-widest">000000</h1>
-	<div class="player flex flex-row justify-between">
-		<div class="player-x flex w-2/3 flex-col items-center gap-10 text-5xl">
+	<div class="player flex flex-row justify-around">
+		<div class="player-x flex flex-col items-center gap-10 text-5xl">
 			Player-X
 			<div class="card-container flex flex-row items-center justify-center gap-4">
 				<div
@@ -30,7 +30,7 @@
 				<p class="text-mb text-[#B78B8B]">PIGLET</p>
 			</div>
 		</div>
-		<div class="player-o gap flex w-2/3 flex-col items-center gap-10 text-5xl">
+		<div class="player-o gap flex flex-col items-center gap-10 text-5xl">
 			Player-O
 			<div class="card-container flex flex-row justify-center gap-4">
 				<div
@@ -75,19 +75,32 @@
 	.player {
 		width: 100%;
 	}
-	.card-container {
-		width: 100%;
-	}
 	.card {
-		width: 25%;
+		width: 35%;
 		height: 400px;
 		border-radius: 40px;
 	}
 	.text-mb {
 		font-size: 0px;
 	}
-
-	@media (max-width: 500px) {
+	@media (max-width: 1280px) {
+		.player {
+			justify-content: space-around;
+		}
+		.player-x,
+		.player-o {
+			font-size: 2rem;
+			flex-direction: column;
+		}
+		.card {
+			width: 150px;
+			height: 260px;
+			border-radius: 20px;
+			font-size: 1.5rem;
+			padding: 5px;
+		}
+	}
+	@media (max-width: 640px) {
 		.code {
 			font-size: 3rem;
 		}
