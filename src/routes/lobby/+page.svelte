@@ -32,7 +32,10 @@
 		</div>
 		<div class="player-o gap flex flex-col items-center gap-10 text-5xl">
 			Player-O
-			<div class="card-container flex flex-row justify-center gap-4">
+			<div
+				class="card-container flex flex-row justify-center gap-4
+			"
+			>
 				<div
 					class="card flex flex-col items-center justify-center border-8 border-[#D89874] bg-[#F3C9AA] text-[#D89874]"
 				>
@@ -93,7 +96,7 @@
 			flex-direction: column;
 		}
 		.card {
-			width: 150px;
+			width: 25%;
 			height: 260px;
 			border-radius: 20px;
 			font-size: 1.5rem;
