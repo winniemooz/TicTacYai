@@ -3,6 +3,7 @@
 	import { boardYai } from '$lib/stores/boardYai.js';
 	import { checkWinner } from '$lib/utils/checkWinner.js';
 	import { turn } from '$lib/stores/turn.js';
+
 	let winner = null;
 	$: winner = checkWinner($boardYai);
 	$: isDraw = $boardYai.every((cell) => cell !== '');
@@ -27,11 +28,10 @@
 		</div>
 	</div>
 	<div
-		class="order-1 col-span-2 flex h-full w-full flex-col items-center justify-center gap-12 pt-8 lg:order-2 lg:pt-0"
+		class="order-1 col-span-2 flex h-full w-full flex-col items-center justify-start gap-6 pt-8 lg:order-2"
 	>
-		<p class="flex items-center justify-center gap-5 text-3xl font-bold">
-			<img src="/Clock.png" alt="" /> 10
-		</p>
+		<p class="text-xl text-mongoose-600 lg:text-3xl">ROOM CODE</p>
+		<p class=" text-4xl font-bold text-mongoose-800 lg:text-6xl">16990</p>
 		{#if !winner && !isDraw}
 			<div
 				class="grid aspect-square w-10/12 grid-cols-3 gap-1 rounded-lg bg-[#73593B] outline outline-4 outline-[#73593B] sm:w-8/12"
@@ -42,8 +42,31 @@
 			</div>
 		{:else if isDraw && !winner}
 			<p class="text-5xl">Draw</p>
+		{:else if !isDraw && winner}
+			<div class="fixed inset-0 z-50 flex h-full w-full justify-center bg-gray-900 bg-opacity-50">
+				<div
+					class="absolute top-[35%] flex w-[80%] flex-col justify-center gap-4 rounded-3xl border-8 border-mongoose-800 bg-mongoose-100 py-20 text-center sm:top-[30%] sm:gap-12 lg:w-[40%]"
+				>
+					<p class="text-4xl font-semibold text-mongoose-600 sm:text-5xl">Winner is {winner}</p>
+					<div class="flex w-full flex-row justify-center gap-2 sm:flex-col sm:gap-4">
+						<a href="/lobby"
+							><button
+								class="button mx-auto rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							>
+								Play Again</button
+							></a
+						>
+						<a href="/home"
+							><button
+								class="button mx-auto rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							>
+								Back to main menu</button
+							></a
+						>
+					</div>
+				</div>
+			</div>
 		{/if}
-		<p class="text-3xl font-bold">16990</p>
 	</div>
 	<div class="order-3 space-y-5 p-10">
 		<p class="text-end text-3xl font-bold">Player 2</p>

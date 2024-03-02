@@ -13,14 +13,6 @@
 	>
 		<img class="w-[100%] py-10 sm:w-[65%] lg:w-[50%]" src="/logo2.png" alt="" srcset="" />
 		<div class="middle-content flex w-[50%] flex-col gap-3 lg:w-[35%]">
-			<button
-				class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
-				on:click={() => (window.location.href = 'quickplay.html')}>Quick Play</button
-			>
-			<button
-				class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
-				on:click={() => (window.location.href = 'joinwithcode.html')}>Join with Code</button
-			>
 			<a href="/lobby"
 				><button
 					class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
@@ -28,10 +20,23 @@
 					Create Room</button
 				></a
 			>
+			<a href="/joincode"
+				><button
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
+					>Join with Code</button
+				>
+			</a>
+			<a href="/leaderboard"
+				><button
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
+				>
+					Leaderbords</button
+				></a
+			>
 			<a href="/">
 				<button
 					class="button logout mx-auto h-16 w-full rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2] sm:h-20"
-					on:click={authHandlers.logout}>Logout</button
+					>Logout</button
 				></a
 			>
 		</div>

@@ -21,8 +21,10 @@
 			</tbody>
 		</table>
 	</div>
-	<button
-		class="absolute bottom-0 left-0 m-6 h-[5vh] w-[30%] rounded-full bg-mongoose-900 text-2xl font-medium text-white sm:h-[8vh] sm:text-3xl lg:w-[10%]"
-		>Back</button
-	>
+	<a href="/home"
+		><button
+			class="absolute bottom-0 left-0 m-6 h-[5vh] w-[30%] rounded-full bg-mongoose-900 text-2xl font-medium text-white sm:h-[8vh] sm:text-3xl lg:w-[10%]"
+			>Back</button
+		>
+	</a>
 </div>
