@@ -56,7 +56,7 @@
 		}
 		if (password != confirmpassword){
 			confirmpasswordMsg = "Password doesn't match."
-		}else {
+		}else if (confirmpassword.length == 0){
 			confirmpasswordMsg = "Please confirm your password."
 		}
 
@@ -65,7 +65,7 @@
 			return;
 		}
 
-		if (register && password === confirmpassword) {
+		if (register && password === confirmpassword && username.length >= 6) {
 			try {
 				await authHandlers.signup(email, password);
 				password = null;
