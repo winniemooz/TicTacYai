@@ -47,17 +47,28 @@
 			usernameErrorMsg = "Username required less than 20 characters."
 		}else if(username.length < 6){
 			usernameErrorMsg = "Username required at least 6 characters."
+		}else{
+			usernameErrorMsg = '';
 		}
+
 		if (!email.match(validRegex)) {
 			emailErrorMsg = "Invalid Email.";
+		}else if(email.match(validRegex)){
+			emailErrorMsg = '';
 		}
+
 		if (password.length < 8) {
 			passwordErrorMsg = "Password required at least 8 characters.";
+		} else{
+			passwordErrorMsg = '';
 		}
+
 		if (password != confirmpassword){
 			confirmpasswordMsg = "Password doesn't match."
-		}else {
+		}else if (confirmpassword.length == 0){
 			confirmpasswordMsg = "Please confirm your password."
+		}else if(password == confirmpassword){
+			confirmpassword = '';
 		}
 
 
@@ -65,7 +76,7 @@
 			return;
 		}
 
-		if (register && password === confirmpassword) {
+		if (register && password === confirmpassword && username.length >= 6 && email.match(validRegex) && password.length >= 8) {
 			try {
 				await authHandlers.signup(email, password);
 				password = null;

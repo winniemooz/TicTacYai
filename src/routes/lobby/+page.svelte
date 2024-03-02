@@ -1,6 +1,7 @@
 <div
 	class="flex min-h-dvh w-full flex-col items-center justify-between bg-mongoose-100 font-fredoka text-mongoose-700"
 >
+
 	<h1 class="code mt-10 text-8xl font-bold tracking-widest">000000</h1>
 	<div class="player flex flex-row justify-around">
 		<div class="player-x flex flex-col items-center gap-10 text-5xl">
@@ -13,7 +14,7 @@
 					<img src="/Puppy.png" alt="" class="h-auto w-48" />
 					PUPPY
 				</div>
-				<p class="text-mb text-[#D89874]">PUPPY</p>
+				<p class="text-mb text-[#D89874] font-copyduck">PUPPY</p>
 				<div
 					class="card flex flex-col items-center justify-center border-8 border-[#98AAC0] bg-[#C8DAF0] text-[#98AAC0]"
 				>
