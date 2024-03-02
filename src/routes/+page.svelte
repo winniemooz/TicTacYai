@@ -65,7 +65,7 @@
 			return;
 		}
 
-		if (register && password === confirmpassword && username.length >= 6) {
+		if (register && password === confirmpassword && username.length >= 6 && email.match(validRegex) && password.length >= 8) {
 			try {
 				await authHandlers.signup(email, password);
 				password = null;
