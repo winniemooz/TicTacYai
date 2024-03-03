@@ -23,6 +23,10 @@
 		3: 'Special Skills'
 	};
 
+	$: if ($authStore.currentUser) {
+		goto('/home');
+	}
+
 	const changeSlide = (value) => {
 		if (slideIndex + value > 3) {
 			slideIndex = 1;
