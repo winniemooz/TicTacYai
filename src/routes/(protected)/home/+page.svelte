@@ -1,5 +1,25 @@
 <script>
 	import { authHandlers } from '$lib/stores/authStore';
+	import { db } from '$lib/firebase/firebase.client';
+	import { ref, set } from "firebase/database";
+	import { authStore } from '$lib/stores/authStore';
+	import { goto } from '$app/navigation';
+
+	const uid = $authStore.currentUser.uid;
+
+	const createRoom = async () => {
+		const roomCode = Math.floor(100000 + Math.random() * 900000);
+		const roomRef = ref(db, `rooms/${roomCode}`);
+		try {
+			await set(roomRef, {
+				host: uid,
+				phrase: "0"
+			});
+			goto(`/lobby/${roomCode}`);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	function logout() {
 		authHandlers.logout();
@@ -12,12 +32,11 @@
 	>
 		<img class="w-[100%] py-10 sm:w-[65%] lg:w-[50%]" src="/logo2.png" alt="" srcset="" />
 		<div class="middle-content flex w-[50%] flex-col gap-3 lg:w-[35%]">
-			<a href="/lobby"
-				><button
-					class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
-				>
-					Create Room</button
-				></a
+			<button
+				class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
+				on:click={createRoom}
+			>
+				Create Room</button
 			>
 			<a href="/joincode"
 				><button

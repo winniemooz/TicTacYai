@@ -1,7 +1,7 @@
 <script>
 	import { authHandlers, authStore } from '../lib/stores/authStore';
-	import { db } from '$lib/firebase/firebase.client';
-	import {setDoc, doc} from 'firebase/firestore';
+	import { firestore } from '$lib/firebase/firebase.client';
+	import { setDoc, doc } from 'firebase/firestore';
 	import { slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
 
@@ -125,7 +125,7 @@
 				const currentUser = await authHandlers.signup(email, password);
 				const uid = currentUser.user.uid;
 
-				await setDoc(doc(db, 'UserProfile', uid), {
+				await setDoc(doc(firestore, 'UserProfile', uid), {
 					username: username,
 					win: 0,
 					lose: 0,

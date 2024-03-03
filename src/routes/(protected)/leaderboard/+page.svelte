@@ -1,9 +1,9 @@
 <script>
 	import { onSnapshot, collection } from 'firebase/firestore';
-	import { db } from '$lib/firebase/firebase.client';
+	import { firestore } from '$lib/firebase/firebase.client';
 
 	let users = [];
-	onSnapshot(collection(db, 'UserProfile'), (snapShot) => {
+	onSnapshot(collection(firestore, 'UserProfile'), (snapShot) => {
 		users = [];
 		snapShot.forEach((doc) => {
 			users.push(doc.data());
