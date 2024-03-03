@@ -1,6 +1,9 @@
 <script>
-	import { authHandlers, authStore } from '../stores/authStore';
-	import { slide } from "svelte/transition";
+	import { authHandlers, authStore } from '../lib/stores/authStore';
+	import { db } from '$lib/firebase/firebase.client';
+	import {setDoc, doc} from 'firebase/firestore';
+	import { slide } from 'svelte/transition';
+	import { goto } from '$app/navigation';
 
 	let register = false;
 	let username = '';
@@ -41,60 +44,106 @@
 		usernameErrorMsg = '';
 	};
 
-	async function handleSubmit() {
-
-		if(username.length > 20){
-			usernameErrorMsg = "Username required less than 20 characters."
-		}else if(username.length < 6){
-			usernameErrorMsg = "Username required at least 6 characters."
-		}else{
-			usernameErrorMsg = '';
-		}
-
+	async function login() {
+		let isValid = true;
+		emailErrorMsg = null;
+		passwordErrorMsg = null;
 		if (!email.match(validRegex)) {
-			emailErrorMsg = "Invalid Email.";
-		}else if(email.match(validRegex)){
-			emailErrorMsg = '';
+			emailErrorMsg = 'Invalid Email.';
+			isValid = false;
 		}
 
 		if (password.length < 8) {
-			passwordErrorMsg = "Password required at least 8 characters.";
-		} else{
-			passwordErrorMsg = '';
+			passwordErrorMsg = 'Password required at least 8 characters.';
+			isValid = false;
 		}
 
-		if (password != confirmpassword){
-			confirmpasswordMsg = "Password doesn't match."
-		}else if (confirmpassword.length == 0){
-			confirmpasswordMsg = "Please confirm your password."
-		}else if(password == confirmpassword){
-			confirmpassword = '';
-		}
-
-
-		if (!email || !password || (register && !confirmpassword)) {
-			return;
-		}
-
-		if (register && password === confirmpassword && username.length >= 6 && email.match(validRegex) && password.length >= 8) {
-			try {
-				await authHandlers.signup(email, password);
-				password = null;
-			} catch (err) {
-				console.log(err);
-			}
-		} else {
+		if (isValid) {
 			try {
 				await authHandlers.login(email, password);
+				goto('/home');
 			} catch (err) {
-				console.log(err);
+				switch (err.code) {
+					case 'auth/invalid-credential':
+						passwordErrorMsg = 'Invalid Password.';
+						break;
+					case 'auth/user-not-found':
+						passwordErrorMsg = 'User not found.';
+						break;
+					case 'auth/wrong-password':
+						passwordErrorMsg = 'Invalid Password.';
+						break;
+					default:
+						passwordErrorMsg = 'Something went wrong.';
+						break;
+				}
 			}
 		}
-		if ($authStore.currentUser) {
-			window.location.href = '/home';
-			resetForm();
+	}
+
+	async function registerUser() {
+		let isValid = true;
+		emailErrorMsg = null;
+		passwordErrorMsg = null;
+		confirmpasswordMsg = null;
+		usernameErrorMsg = null;
+
+		if (username.length > 20) {
+			usernameErrorMsg = 'Username required less than 20 characters.';
+			isValid = false;
+		} else if (username.length < 6) {
+			usernameErrorMsg = 'Username required at least 6 characters.';
+			isValid = false;
 		}
 
+		if (!email.match(validRegex)) {
+			emailErrorMsg = 'Invalid Email.';
+			isValid = false;
+		}
+
+		if (password.length < 8) {
+			passwordErrorMsg = 'Password required at least 8 characters.';
+			isValid = false;
+		}
+
+		if (confirmpassword.length == 0) {
+			confirmpasswordMsg = 'Password required.';
+			isValid = false;
+		}
+
+		if (password != confirmpassword) {
+			confirmpasswordMsg = "Password doesn't match.";
+			isValid = false;
+		}
+
+		if (isValid) {
+			try {
+				const currentUser = await authHandlers.signup(email, password);
+				const uid = currentUser.user.uid;
+
+				await setDoc(doc(db, 'UserProfile', uid), {
+					username: username,
+					win: 0,
+					lose: 0,
+					draw: 0
+				});
+
+				goto('/home');
+			} catch (err) {
+				console.log(err);
+				switch (err.code) {
+					case 'auth/email-already-in-use':
+						emailErrorMsg = 'Email already in use.';
+						break;
+					case 'auth/invalid-email':
+						emailErrorMsg = 'Invalid Email.';
+						break;
+					default:
+						emailErrorMsg = 'Something went wrong.';
+						break;
+				}
+			}
+		}
 	}
 </script>
 
@@ -113,35 +162,34 @@
 				<button
 					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${register ? 'bg-mongoose-200 text-3xl font-bold' : 'bg-mongoose-100'}`}
 					on:click={() => {
-						resetForm(),
-						register = true;
+						resetForm(), (register = true);
 					}}>Register</button
 				>
 				<button
 					class={`flex-1 justify-center rounded-t-xl p-4 text-center text-2xl text-mongoose-900 transition ${!register ? 'bg-mongoose-200 text-3xl font-bold' : 'bg-mongoose-100'}`}
 					on:click={() => {
-						resetForm(),
-						register = false;
+						resetForm(), (register = false);
 					}}>Login</button
 				>
 			</div>
 			<div class="flex rounded-b-xl bg-mongoose-200">
-				<div class="forms-container flex h-[40vh] w-full items-center px-10">
+				<div class="forms-container flex h-[40vh] w-full overflow-y-auto p-4 px-10">
 					<div class="w-full flex-col px-0 md:px-10">
 						{#if register}
-							<div class="form-container  space-y-4">
+							<div class="form-container space-y-4">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
 								<div>
 									<input
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="text"
 										bind:value={username}
-										placeholder="Username" required
+										placeholder="Username"
+										required
 									/>
 									{#if usernameErrorMsg}
-									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
-										{usernameErrorMsg}
-									</p>
+										<p transition:slide={{ duration: 100 }} class="ml-5 text-red-500">
+											{usernameErrorMsg}
+										</p>
 									{/if}
 								</div>
 								<div>
@@ -149,12 +197,13 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="email"
 										bind:value={email}
-										placeholder="Email" required
+										placeholder="Email"
+										required
 									/>
 									{#if emailErrorMsg}
-									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
-										{emailErrorMsg}
-									</p>
+										<p transition:slide={{ duration: 100 }} class="ml-5 text-red-500">
+											{emailErrorMsg}
+										</p>
 									{/if}
 								</div>
 								<div>
@@ -162,12 +211,13 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="password"
 										bind:value={password}
-										placeholder="Password" required
+										placeholder="Password"
+										required
 									/>
 									{#if passwordErrorMsg}
-									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
-										{passwordErrorMsg}
-									</p>
+										<p transition:slide={{ duration: 100 }} class="ml-5 text-red-500">
+											{passwordErrorMsg}
+										</p>
 									{/if}
 								</div>
 								<div>
@@ -175,17 +225,18 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="password"
 										bind:value={confirmpassword}
-										placeholder="Confirm Password" required
+										placeholder="Confirm Password"
+										required
 									/>
 									{#if confirmpasswordMsg}
-									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
-										{confirmpasswordMsg}
-									</p>
+										<p transition:slide={{ duration: 100 }} class="ml-5 text-red-500">
+											{confirmpasswordMsg}
+										</p>
 									{/if}
 								</div>
 							</div>
 							<button
-								on:click={handleSubmit}
+								on:click={registerUser}
 								class="mt-8 rounded-full bg-mongoose-800 px-8 py-2 text-white transition hover:bg-mongoose-600 active:bg-mongoose-900"
 								>Register</button
 							>
@@ -196,12 +247,13 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="text"
 										bind:value={email}
-										placeholder="Email" required
+										placeholder="Email"
+										required
 									/>
 									{#if emailErrorMsg}
-									<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
-										{emailErrorMsg}
-									</p>
+										<p transition:slide={{ duration: 100 }} class="ml-5 text-red-500">
+											{emailErrorMsg}
+										</p>
 									{/if}
 								</div>
 								<div>
@@ -209,17 +261,18 @@
 										class="w-full rounded-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-mongoose-300"
 										type="password"
 										bind:value={password}
-										placeholder="Password" required
+										placeholder="Password"
+										required
 									/>
 									{#if passwordErrorMsg}
-										<p transition:slide={{ duration: 100 }} class="text-red-500 ml-5" >
+										<p transition:slide={{ duration: 100 }} class="ml-5 text-red-500">
 											{passwordErrorMsg}
 										</p>
 									{/if}
 								</div>
 							</div>
 							<button
-								on:click={handleSubmit}
+								on:click={login}
 								class="mt-8 rounded-full bg-mongoose-800 px-8 py-2 text-white transition hover:bg-mongoose-600 active:bg-mongoose-900"
 								>Login</button
 							>
@@ -258,11 +311,11 @@
 								<div class="characters flex gap-6">
 									<div class="mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
-											src="/Piglet.png"
+											src="/piglet.png"
 											alt="Character 1"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<h3 class="text-3xl text-red-400 font-bold">PIGLET</h3>
+										<h3 class="text-3xl font-bold text-red-400">PIGLET</h3>
 										<p class="">
 											When the player win in the small grid, there’s a 50% chance of getting a
 											random skill if the player didn’t received the skill yet in the game.
@@ -274,7 +327,7 @@
 											alt="Character 2"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<h3 class="text-3xl text-blue-400 font-bold">KITTY</h3>
+										<h3 class="text-3xl font-bold text-blue-400">KITTY</h3>
 										<p class="">
 											When the opponent wins 2 small grid, the player will receive a random Skill 1
 											time.<br />(once per game)
@@ -286,7 +339,7 @@
 											alt="Character 3"
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
-										<h3 class="text-3xl text-orange-400 font-bold">PUPPY</h3>
+										<h3 class="text-3xl font-bold text-orange-400">PUPPY</h3>
 										<p class="">
 											Player have a 25% chance to steal a Skill when their opponent gains a Skill.<br
 											/>(once per game)

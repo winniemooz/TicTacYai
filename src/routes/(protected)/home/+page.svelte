@@ -1,9 +1,8 @@
 <script>
-	import { authHandlers } from '../../stores/authStore';
+	import { authHandlers } from '$lib/stores/authStore';
 
 	function logout() {
-		// Handle logout logic here
-		alert('Logout functionality not implemented in this example.');
+		authHandlers.logout();
 	}
 </script>
 
@@ -33,11 +32,11 @@
 					Leaderbords</button
 				></a
 			>
-			<a href="/">
+			<button on:click={logout}>
 				<button
 					class="button logout mx-auto h-16 w-full rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2] sm:h-20"
 					>Logout</button
-				></a
+				></button
 			>
 		</div>
 		<div class="fixed bottom-0 flex w-full flex-row justify-between">

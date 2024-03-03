@@ -1,22 +1,25 @@
 <script>
 	import '../app.pcss';
-	import { onMount } from 'svelte'
-	import { auth } from '../lib/firebase/firebase.client'
-	import { authStore } from '../stores/authStore'
+	import { onMount } from 'svelte';
+	import { auth } from '$lib/firebase/firebase.client';
+	import { doc, getDoc } from "firebase/firestore";
+	import { authStore } from '$lib/stores/authStore';
+	import { db } from '$lib/firebase/firebase.client';
 
 	onMount(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			console.log(user)
-			authStore.update((curr) => {
-				return {...curr, isLoading: false, currentUser:user}
-			});
-
-			if (browser) {
-				if (!authStore.currentUser && !authStore.isLoading && window.location.href !== '/') {
-					window.location.href = '/';
-				}
+		auth.onAuthStateChanged(async (user) => {
+			if (user) {
+				const profile = await getDoc(doc(db, "UserProfile", user.uid));
+				authStore.update((curr) => {
+					return { ...curr, isLoading: false, currentUser: user, profile: profile.data()};
+				});
+			} else {
+				authStore.update((curr) => {
+					return { ...curr, isLoading: false, currentUser: null, profile: null };
+				});
 			}
-		})
-	})
+		});
+	});
 </script>
+
 <slot />
