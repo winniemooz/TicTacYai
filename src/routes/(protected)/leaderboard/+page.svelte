@@ -1,3 +1,18 @@
+<script>
+	import { onSnapshot, collection } from 'firebase/firestore';
+	import { db } from '$lib/firebase/firebase.client';
+
+	let users = [];
+	onSnapshot(collection(db, 'UserProfile'), (snapShot) => {
+		users = [];
+		snapShot.forEach((doc) => {
+			users.push(doc.data());
+		});
+		users.sort((a, b) => b.win - a.win);
+		users = users.slice(0, 10);
+	});
+</script>
+
 <div class="body flex min-h-dvh w-full flex-col bg-mongoose-100 font-fredoka">
 	<div class=" flex flex-col items-center justify-start gap-5 sm:gap-0 lg:my-0">
 		<img src="/logo2.png" alt="" class=" my-6 sm:w-[65%] lg:mt-0 lg:w-[50%]" />
@@ -13,11 +28,13 @@
 				</tr>
 			</thead>
 			<tbody class="bg-mongoose-200 text-mongoose-800">
-				<tr>
-					<th class="p-2 lg:p-3">1</th>
-					<th>Player1</th>
-					<th>20</th>
-				</tr>
+				{#each users as user, index}
+					<tr>
+						<th class="p-2 lg:p-3">{index + 1}</th>
+						<th>{user.username}</th>
+						<th>{user.win}</th>
+					</tr>
+				{/each}
 			</tbody>
 		</table>
 	</div>
