@@ -26,8 +26,6 @@
 
 	$: ready = roomInfo?.hostCharacter && roomInfo?.challengerCharacter;
 
-	$: console.log(roomInfo);
-
 	const selectCharacter = (character) => {
 		if (isHost) {
 			update(roomRef, {
@@ -54,7 +52,8 @@
 					6: Array(9).fill(''),
 					7: Array(9).fill(''),
 					8: Array(9).fill('')
-				}
+				},
+				turn: 'X'
 			});
 		}
 	};
