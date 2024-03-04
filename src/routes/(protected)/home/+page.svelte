@@ -1,12 +1,15 @@
 <script>
 	import { authHandlers } from '$lib/stores/authStore';
 	import { db } from '$lib/firebase/firebase.client';
-	import { ref, set } from "firebase/database";
+	import { ref, set } from 'firebase/database';
 	import { authStore } from '$lib/stores/authStore';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
+	import { fade, scale } from 'svelte/transition';
 
 	const uid = $authStore.currentUser?.uid;
+
+	let logoutModal = false;
 
 	const createRoom = async () => {
 		const roomCode = Math.floor(100000 + Math.random() * 900000);
@@ -14,7 +17,7 @@
 		try {
 			await set(roomRef, {
 				host: uid,
-				phrase: "0"
+				phrase: '0'
 			});
 			if (browser) {
 				goto(`/lobby/${roomCode}`);
@@ -22,6 +25,10 @@
 		} catch (error) {
 			console.error(error);
 		}
+	};
+
+	const openLogoutModal = () => {
+		logoutModal = !logoutModal;
 	};
 
 	function logout() {
@@ -54,7 +61,7 @@
 					Leaderbords</button
 				></a
 			>
-			<button on:click={logout}>
+			<button on:click={openLogoutModal}>
 				<button
 					class="button logout mx-auto h-16 w-full rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2] sm:h-20"
 					>Logout</button
@@ -78,10 +85,36 @@
 					><img src="/tutorial-icon.png" alt="" />Tutorial</button
 				></a
 			>
-			<!-- on:click={logout} -->
 		</div>
 	</div>
 </div>
+{#if logoutModal}
+	<div
+		transition:fade={{ duration: 100 }}
+		class="absolute inset-0 left-0 top-0 flex h-full w-full items-center justify-center bg-black/30 p-4"
+	>
+		<div
+			class="flex flex-col gap-5 w-full md:w-auto rounded-lg bg-mongoose-100 p-10 text-4xl font-semibold text-mongoose-800"
+			transition:scale={{ duration: 175 }}
+		>
+			<p>Are you sure you want to logout?</p>
+			<div class="flex flex-row gap-5">
+				<button
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-400 text-4xl font-medium text-mongoose-100"
+					on:click={logout}
+				>
+					Yes</button
+				>
+				<button
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-700 text-4xl font-medium text-mongoose-100"
+					on:click={openLogoutModal}
+				>
+					No</button
+				>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style>
 	.button {
