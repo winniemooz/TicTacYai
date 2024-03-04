@@ -17,10 +17,6 @@
 
 	$: if (checkWinner(board)) {
 		winner = checkWinner(board);
-		boardYai.update((n) => {
-			n[boardCell] = winner;
-			return n;
-		});
 	}
 
 	onValue(ref(db, `rooms/${roomId}/board/${boardCell}`), (snapshot) => {

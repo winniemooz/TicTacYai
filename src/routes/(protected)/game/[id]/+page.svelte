@@ -15,6 +15,7 @@
 	const roomId = $page.params.id;
 	let isHost = false;
 	let isChallenger = false;
+	let isLoading = true;
 	let player1;
 	let player2;
 
@@ -30,7 +31,10 @@
 		const data = snapshot.val();
 		if (data) {
 			$boardYai = data.map((cell) => {
-				return checkWinner(cell);
+				if (cell.every((cell) => cell !== '') && !checkWinner(cell)) {
+					return 'D';
+				}
+				return checkWinner(cell) || '';
 			});
 		}
 	});
@@ -38,6 +42,9 @@
 	onValue(ref(db, `rooms/${roomId}`), async (snapshot) => {
 		const data = snapshot.val();
 		if (data) {
+			if (isLoading) {
+				isLoading = false;
+			}
 			player1 = await getProfile(data.host);
 			player2 = await getProfile(data.challenger);
 			if ($authStore.currentUser?.uid) {
@@ -129,7 +136,8 @@
 	$: if (winner) {
 		setWinner(winner);
 	}
-	$: isDraw = $boardYai.every((cell) => cell !== '' && cell !== null);
+	$: console.log($boardYai);
+	$: isDraw = $boardYai.every((cell) => cell !== '');
 	$: if (isDraw) {
 		setWinner('draw');
 	}
@@ -165,7 +173,7 @@
 				<Tictac boardCell={i} {roomId} />
 			{/each}
 		</div>
-		{#if winner || isDraw}
+		{#if winner || (isDraw && !isLoading)}
 			<div
 				transition:fade={{ duration: 100 }}
 				class="fixed inset-0 z-50 flex h-full w-full justify-center bg-gray-900 bg-opacity-50"
@@ -188,12 +196,12 @@
 						>
 							Play Again</button
 						>
-							<button
-								class="button mx-auto rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
-								on:click={backToMain}
-							>
-								Back to main menu</button
-							>
+						<button
+							class="button mx-auto rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							on:click={backToMain}
+						>
+							Back to main menu</button
+						>
 					</div>
 				</div>
 			</div>
