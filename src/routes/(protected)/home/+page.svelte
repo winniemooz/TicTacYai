@@ -5,7 +5,7 @@
 	import { authStore } from '$lib/stores/authStore';
 	import { goto } from '$app/navigation';
 
-	const uid = $authStore.currentUser.uid;
+	const uid = $authStore.currentUser?.uid;
 
 	const createRoom = async () => {
 		const roomCode = Math.floor(100000 + Math.random() * 900000);
