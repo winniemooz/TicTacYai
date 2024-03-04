@@ -4,6 +4,7 @@
 	import { ref, set } from "firebase/database";
 	import { authStore } from '$lib/stores/authStore';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	const uid = $authStore.currentUser?.uid;
 
@@ -15,7 +16,9 @@
 				host: uid,
 				phrase: "0"
 			});
-			goto(`/lobby/${roomCode}`);
+			if (browser) {
+				goto(`/lobby/${roomCode}`);
+			}
 		} catch (error) {
 			console.error(error);
 		}

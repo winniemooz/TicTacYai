@@ -68,13 +68,15 @@
 				challengerCharacter: null
 			});
 		}
-		goto('/home');
+		if (browser) {
+			goto('/home');
+		}
 	};
 
 	onValue(roomRef, async (snapshot) => {
 		const data = snapshot.val();
 		if (data) {
-			if (data.phrase === '1') {
+			if (data.phrase === '1' && browser) {
 				goto(`/game/${roomId}`);
 			}
 			roomInfo = data;

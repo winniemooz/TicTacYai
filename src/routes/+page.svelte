@@ -4,6 +4,7 @@
 	import { setDoc, doc } from 'firebase/firestore';
 	import { slide } from 'svelte/transition';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	let register = false;
 	let username = '';
@@ -23,7 +24,7 @@
 		3: 'Special Skills'
 	};
 
-	$: if ($authStore.currentUser) {
+	$: if ($authStore.currentUser && browser) {
 		goto('/home');
 	}
 
@@ -65,7 +66,9 @@
 		if (isValid) {
 			try {
 				await authHandlers.login(email, password);
-				goto('/home');
+				if (browser) {
+					goto('/home');
+				}
 			} catch (err) {
 				switch (err.code) {
 					case 'auth/invalid-credential':
@@ -131,8 +134,9 @@
 					lose: 0,
 					draw: 0
 				});
-
-				goto('/home');
+				if (browser) {
+					goto('/home');
+				}
 			} catch (err) {
 				console.log(err);
 				switch (err.code) {

@@ -4,6 +4,7 @@
 	import { doc, getDoc } from 'firebase/firestore';
 	import { authStore } from '$lib/stores/authStore';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 
 	let code = '';
 
@@ -15,7 +16,7 @@
 				const host = room.host;
 				const challenger = room.challenger;
 
-				if (host === $authStore.currentUser.uid) {
+				if (host === $authStore.currentUser.uid && browser) {
 					goto(`/lobby/${code}`);
 					return;
 				}
@@ -26,7 +27,9 @@
 					update(roomRef, {
 						challenger: $authStore.currentUser.uid
 					});
-					goto(`/lobby/${code}`);
+					if (browser) {
+						goto(`/lobby/${code}`);
+					}
 				}
 			} catch (error) {
 				console.log(error);
