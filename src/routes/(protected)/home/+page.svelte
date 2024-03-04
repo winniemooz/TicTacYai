@@ -61,11 +61,10 @@
 					Leaderboards</button
 				></a
 			>
-			<button on:click={openLogoutModal}>
-				<button
-					class="button logout mx-auto h-16 w-full rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2] sm:h-20"
-					>Logout</button
-				></button
+			<button
+				class="button logout mx-auto h-16 w-full rounded-full bg-[#5a4134] px-4 text-4xl font-medium text-[#f2ece2] sm:h-20"
+				on:click={openLogoutModal}
+				>Logout</button
 			>
 		</div>
 		<div class="fixed bottom-0 flex w-full flex-row justify-between">
@@ -94,7 +93,7 @@
 		class="absolute inset-0 left-0 top-0 flex h-full w-full items-center justify-center bg-black/30 p-4"
 	>
 		<div
-			class="flex flex-col gap-5 w-full md:w-auto rounded-lg bg-mongoose-100 p-10 text-4xl font-semibold text-mongoose-800"
+			class="flex w-full flex-col gap-5 rounded-lg bg-mongoose-100 p-10 text-4xl font-semibold text-mongoose-800 md:w-auto"
 			transition:scale={{ duration: 175 }}
 		>
 			<p>Are you sure you want to logout?</p>
