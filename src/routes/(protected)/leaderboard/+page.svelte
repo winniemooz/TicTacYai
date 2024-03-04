@@ -19,7 +19,7 @@
 		<p class="pb-5 text-4xl font-semibold text-mongoose-700 sm:text-5xl lg:text-6xl">
 			Leaderboards
 		</p>
-		<table class="w-[80%] table-auto text-sm sm:text-xl lg:text-2xl">
+		<table class="w-[80%] table-fixed text-sm sm:text-xl lg:text-2xl">
 			<thead class=" bg-mongoose-800 text-mongoose-100">
 				<tr>
 					<th class="p-3 lg:p-5">RANK</th>
@@ -35,6 +35,11 @@
 						<th>{user.win}</th>
 					</tr>
 				{/each}
+				{#if users.length == 0}
+					<tr>
+						<td class="p-2 text-center lg:p-3" colspan="3">Loading...</td>
+					</tr>
+				{/if}
 			</tbody>
 		</table>
 	</div>
