@@ -58,7 +58,7 @@
 				><button
 					class="button mx-auto h-16 w-full rounded-full bg-mongoose-200 text-4xl font-medium text-mongoose-800 sm:h-20"
 				>
-					Leaderbords</button
+					Leaderboards</button
 				></a
 			>
 			<button on:click={openLogoutModal}>
