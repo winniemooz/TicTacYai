@@ -1,7 +1,29 @@
 <script>
 	import { authStore } from '$lib/stores/authStore';
+	import { firestore } from '$lib/firebase/firebase.client';
+	import { doc, getDoc } from 'firebase/firestore';
+	$: uid = $authStore.currentUser?.uid;
+	$: getProfile(uid).then((data) => {
+		profile = data;
+	});
 
-	$: profile = $authStore.profile;
+	const getProfile = async (uid) => {
+		try {
+			return (await getDoc(doc(firestore, 'UserProfile', uid))).data();
+		} catch (error) {
+			return null;
+		}
+	};
+
+	let profile = null;
+
+	const calcWinRate = (win, lose, draw) => {
+		const rate = ((win / (win + lose + draw)) * 100).toFixed(2);
+		if (rate === 'NaN') {
+			return '0';
+		}
+		return rate;
+	};
 </script>
 
 <div class="flex min-h-dvh w-full justify-between bg-mongoose-100 font-fredoka">
@@ -33,9 +55,7 @@
 				>
 					Win-rate
 					<p class="text-2xl font-semibold text-mongoose-50 lg:text-6xl">
-						{profile
-							? ((profile.win / (profile.win + profile.lose + profile.draw)) * 100).toFixed(2)
-							: '0'}%
+						{profile ? calcWinRate(profile.win, profile.lose, profile.draw) : '0'}%
 					</p>
 				</div>
 			</div>
