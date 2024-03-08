@@ -54,7 +54,6 @@
 					skills.push({ skill, pos })
 				}
 			});
-
 			await update(roomRef, {
 				phrase: '1',
 				board: {
