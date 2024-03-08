@@ -42,7 +42,7 @@
 		if (ready && isHost) {
 			const skillset = ["SKIP", "STAR"]
 			const skills = []
-
+			
 			skillset.forEach((skill) => {
 				let pos = Math.floor(Math.random() * 9)
 				let isAlreadyExist = skills.find((s) => s.pos === pos)
