@@ -40,6 +40,21 @@
 
 	const startGame = async () => {
 		if (ready && isHost) {
+			const skillset = ["SKIP", "STAR"]
+			const skills = []
+
+			skillset.forEach((skill) => {
+				let pos = Math.floor(Math.random() * 9)
+				let isAlreadyExist = skills.find((s) => s.pos === pos)
+				while (isAlreadyExist) {
+					pos = Math.floor(Math.random() * 9)
+					isAlreadyExist = skills.find((s) => s.pos === pos)
+				}
+				if (!isAlreadyExist) {
+					skills.push({ skill, pos })
+				}
+			});
+
 			await update(roomRef, {
 				phrase: '1',
 				board: {
@@ -53,7 +68,8 @@
 					7: Array(9).fill(''),
 					8: Array(9).fill('')
 				},
-				turn: 'X'
+				turn: 'X',
+				skills
 			});
 		}
 	};

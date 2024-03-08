@@ -7,7 +7,7 @@
 	import { browser } from '$app/environment';
 	import { fade, scale } from 'svelte/transition';
 
-	const uid = $authStore.currentUser?.uid;
+	$: uid = $authStore.currentUser?.uid;
 
 	let logoutModal = false;
 

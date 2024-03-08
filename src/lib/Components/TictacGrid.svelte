@@ -12,8 +12,11 @@
 	let isLoading = true;
 	let winner = null;
 	let board = Array(9).fill('');
+	let skills = [];
 	export let boardCell;
 	export let roomId;
+
+	$: skill = skills?.find((skill) => skill.pos === boardCell)
 
 	$: if (checkWinner(board)) {
 		winner = checkWinner(board);
@@ -32,6 +35,7 @@
 			if (isLoading) {
 				isLoading = false;
 			}
+			skills = data.skills;
 			if ($authStore.currentUser?.uid) {
 				isHost = data.host === $authStore.currentUser.uid;
 			}
@@ -46,6 +50,13 @@
 </script>
 
 {#if !winner}
+	{#if skill}
+		<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none">
+			<h1>
+				{skill.skill}
+			</h1>
+		</div>
+	{/if}
 	{#each board as cell, i}
 		<div class="text-[#73593B]" class:opacity-70={isDraw}>
 			<TictacButton

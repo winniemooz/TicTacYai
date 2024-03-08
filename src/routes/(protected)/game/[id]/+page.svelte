@@ -27,18 +27,6 @@
 		}
 	};
 
-	onValue(ref(db, `rooms/${roomId}/board`), (snapshot) => {
-		const data = snapshot.val();
-		if (data) {
-			$boardYai = data.map((cell) => {
-				if (cell.every((cell) => cell !== '') && !checkWinner(cell)) {
-					return 'D';
-				}
-				return checkWinner(cell) || '';
-			});
-		}
-	});
-
 	onValue(ref(db, `rooms/${roomId}`), async (snapshot) => {
 		const data = snapshot.val();
 		if (data) {
@@ -53,6 +41,34 @@
 			if ($authStore.currentUser?.uid) {
 				isChallenger = data.challenger === $authStore.currentUser.uid;
 			}
+			$boardYai = data.board.map((cell, index) => {
+				if (cell.every((cell) => cell !== '') && !checkWinner(cell)) {
+					return 'D';
+				}
+				const winner = checkWinner(cell);
+				const skill = data.skills?.find((skill) => skill.pos === index);
+				if (winner && skill) {
+					console.log("Use skill", skill);
+					switch (skill.skill) {
+						case 'SKIP':
+							if (isHost) {
+								update(ref(db, `rooms/${roomId}`), {
+									turn: 'O'
+								});
+							} else {
+								update(ref(db, `rooms/${roomId}`), {
+									turn: 'X'
+								});
+							}
+							break;
+					}
+					const removedSkill = data.skills?.filter((s) => s.pos !== index);
+					update(ref(db, `rooms/${roomId}`), {
+						skills: removedSkill
+					});
+				}
+				return winner || '';
+			});
 			if (data.winner && data.phrase != '4' && isHost) {
 				if (data.winner === 'X') {
 					await updateDoc(doc(firestore, 'UserProfile', data.host), {

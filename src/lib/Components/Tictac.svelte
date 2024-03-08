@@ -4,6 +4,6 @@
   export let roomId;
 </script>
 
-<div class="grid grid-cols-3 aspect-square">
+<div class="grid grid-cols-3 aspect-square relative">
   <TictacGrid {boardCell} {roomId} />
 </div>
