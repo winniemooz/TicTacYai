@@ -191,13 +191,13 @@
 					</p>
 					<div class="flex w-full flex-row justify-center gap-2 sm:flex-col sm:gap-4">
 						<button
-							class="button mx-auto rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							class="button mx-0 sm:mx-auto rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
 							on:click={playAgain}
 						>
 							Play Again</button
 						>
 						<button
-							class="button mx-auto rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							class="button mx-0 sm:mx-auto rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
 							on:click={backToMain}
 						>
 							Back to main menu</button
