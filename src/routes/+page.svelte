@@ -72,7 +72,7 @@
 			} catch (err) {
 				switch (err.code) {
 					case 'auth/invalid-credential':
-						passwordErrorMsg = 'Invalid Password.';
+						passwordErrorMsg = 'Login failed.';
 						break;
 					case 'auth/user-not-found':
 						passwordErrorMsg = 'User not found.';
@@ -182,7 +182,7 @@
 			</div>
 			<div class="flex rounded-b-xl bg-mongoose-200">
 				<div class="forms-container flex h-[40vh] w-full overflow-y-auto p-4 px-10">
-					<div class="w-full flex-col px-0 md:px-10">
+					<div class="w-full flex-col px-0 md:px-10 pt-8">
 						{#if register}
 							<div class="form-container space-y-4">
 								<!-- <label for="username" class="block text-mongoose-800 py-2 text-lg">Username</label> -->
