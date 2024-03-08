@@ -90,22 +90,22 @@
 {#if logoutModal}
 	<div
 		transition:fade={{ duration: 100 }}
-		class="absolute inset-0 left-0 top-0 flex h-full w-full items-center justify-center bg-black/30 p-4"
+		class="absolute inset-0 left-0 top-0 flex h-full w-full items-center justify-center bg-black/30 p-4 font-fredoka"
 	>
 		<div
-			class="flex w-full flex-col gap-5 rounded-lg bg-mongoose-100 p-10 text-4xl font-semibold text-mongoose-800 md:w-auto"
+			class="flex w-full flex-col gap-5 rounded-lg bg-mongoose-100 p-10 text-2xl sm:text-4xl font-semibold text-mongoose-800 sm:w-auto"
 			transition:scale={{ duration: 175 }}
 		>
 			<p>Are you sure you want to logout?</p>
 			<div class="flex flex-row gap-5">
 				<button
-					class="button mx-auto h-16 w-full rounded-full bg-mongoose-400 text-4xl font-medium text-mongoose-100"
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-400 text-2xl sm:text-4xl font-medium text-mongoose-100"
 					on:click={logout}
 				>
 					Yes</button
 				>
 				<button
-					class="button mx-auto h-16 w-full rounded-full bg-mongoose-700 text-4xl font-medium text-mongoose-100"
+					class="button mx-auto h-16 w-full rounded-full bg-mongoose-700 text-2xl sm:text-4xl font-medium text-mongoose-100"
 					on:click={openLogoutModal}
 				>
 					No</button
