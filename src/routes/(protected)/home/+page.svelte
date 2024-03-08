@@ -96,16 +96,16 @@
 			class="flex w-full flex-col gap-5 rounded-lg bg-mongoose-100 p-10  font-semibold text-mongoose-800 sm:w-auto"
 			transition:scale={{ duration: 175 }}
 		>
-			<p class="text-2xl sm:text-4xl">Are you sure you want to logout?</p>
+			<p class="text-xl sm:text-4xl">Are you sure you want to logout?</p>
 			<div class="flex flex-row gap-5">
 				<button
-					class="button mx-auto h-16 w-full rounded-full bg-mongoose-400 text-2xl sm:text-4xl font-medium text-mongoose-100"
+					class="button mx-auto h-12 sm:h-16 w-full rounded-full bg-mongoose-400 text-2xl sm:text-4xl font-medium text-mongoose-100"
 					on:click={logout}
 				>
 					Yes</button
 				>
 				<button
-					class="button mx-auto h-16 w-full rounded-full bg-mongoose-700 text-2xl sm:text-4xl font-medium text-mongoose-100"
+					class="button mx-auto h-12 sm:h-16 w-full rounded-full bg-mongoose-700 text-2xl sm:text-4xl font-medium text-mongoose-100"
 					on:click={openLogoutModal}
 				>
 					No</button
