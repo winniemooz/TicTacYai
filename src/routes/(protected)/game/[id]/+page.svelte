@@ -17,7 +17,9 @@
 	let isChallenger = false;
 	let isLoading = true;
 	let player1;
+	let player1Profile = 'https://via.placeholder.com/150';
 	let player2;
+	let player2Profile = 'https://via.placeholder.com/150';
 
 	const getProfile = async (uid) => {
 		try {
@@ -34,6 +36,12 @@
 				isLoading = false;
 			}
 			player1 = await getProfile(data.host);
+			console.log(data.hostCharacter)
+			switch (data.hostCharacter) {
+				case 'piglet':
+					player1Profile = '/piglet.png';
+					break;
+			}
 			player2 = await getProfile(data.challenger);
 			if ($authStore.currentUser?.uid) {
 				isHost = data.host === $authStore.currentUser.uid;
@@ -165,7 +173,7 @@
 		<p class="text-3xl font-bold">{player1?.username || 'Loading..'}</p>
 		<div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-10">
 			<img
-				src="https://via.placeholder.com/150"
+				src={player1Profile}
 				alt="player 1"
 				class="order-2 aspect-square w-28 rounded-2xl sm:order-1 sm:w-40"
 			/>
@@ -233,8 +241,8 @@
 				O
 			</p>
 			<img
-				src="https://via.placeholder.com/150"
-				alt="player 1"
+				src={player2Profile}
+				alt="player 2"
 				class="aspect-square w-28 rounded-2xl sm:w-40"
 			/>
 		</div>
