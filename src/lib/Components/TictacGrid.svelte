@@ -15,13 +15,23 @@
 	let skills = [];
 	export let boardCell;
 	export let roomId;
+	let skillpic = 'https://via.placeholder.com/150';
 
 	$: skill = skills?.find((skill) => skill.pos === boardCell)
+	
+	// switch(skill){
+	// 	case 'STAR':
+	// 		skillpic = '/star.png';
+	// 		break;
+	// 	case 'SKIP':
+	// 		skillpic = '/no-stopping.png';
+	// 		break;
+	// }
 
 	$: if (checkWinner(board)) {
 		winner = checkWinner(board);
 	}
-
+	
 	onValue(ref(db, `rooms/${roomId}/board/${boardCell}`), (snapshot) => {
 		const data = snapshot.val();
 		if (data) {
@@ -45,16 +55,13 @@
 			$turn = data.turn;
 		}
 	});
-
 	$: isDraw = board.every((cell) => cell !== '');
 </script>
 
 {#if !winner}
 	{#if skill}
 		<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none">
-			<h1>
-				{skill.skill}
-			</h1>
+			{skill.skill}
 		</div>
 	{/if}
 	{#each board as cell, i}

@@ -91,7 +91,24 @@
 			player1 = await getProfile(data.host);
 			switch (data.hostCharacter) {
 				case 'piglet':
-					player1Profile = '/piglet.png';
+					player1Profile = '/piglet_profile.png';
+					break;
+				case 'puppy':
+					player1Profile = '/puppy_profile.png';
+					break;
+				case 'kitty':
+					player1Profile = '/kitty_profile.png';
+					break;
+			}
+			switch (data.challengerCharacter) {
+				case 'piglet':
+					player2Profile = '/piglet_profile.png';
+					break;
+				case 'puppy':
+					player2Profile = '/puppy_profile.png';
+					break;
+				case 'kitty':
+					player2Profile = '/kitty_profile.png';
 					break;
 			}
 			player2 = await getProfile(data.challenger);
@@ -200,12 +217,12 @@
 
 <div class=" grid min-h-screen w-full grid-cols-2 bg-[#FFEDDA] font-fredoka lg:grid-cols-4">
 	<div class="order-2 space-y-5 p-10 lg:order-1">
-		<p class="text-3xl font-bold">{player1?.username || 'Loading..'}</p>
+		<p class="text-3xl font-bold text-mongoose-800">{player1?.username || 'Loading..'}</p>
 		<div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-10">
-			<img
+			<img 
 				src={player1Profile}
 				alt="player 1"
-				class="order-2 aspect-square w-28 rounded-2xl sm:order-1 sm:w-40"
+				class="order-2 w-28 h-full rounded-2xl sm:order-1 sm:w-40"
 			/>
 			<p
 				class="order-1 text-5xl font-bold text-[#7F8CAE] transition duration-100 sm:order-2 sm:text-8xl"
@@ -262,7 +279,7 @@
 		{/if}
 	</div>
 	<div class="order-3 space-y-5 p-10">
-		<p class="text-end text-3xl font-bold">{player2?.username || 'Loading..'}</p>
+		<p class="text-end text-3xl text-mongoose-800 font-bold">{player2?.username || 'Loading..'}</p>
 		<div class="flex flex-col items-center justify-end gap-4 sm:flex-row sm:gap-10">
 			<p
 				class="text-5xl font-bold text-[#D18A8A] transition duration-100 sm:text-8xl"
