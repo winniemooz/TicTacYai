@@ -29,6 +29,59 @@
 		}
 	};
 
+	onValue(ref(db, `rooms/${roomId}`), (snapshot) => {
+		const data = snapshot.val();
+		if (data) {
+			if ($authStore.currentUser?.uid) {
+				isHost = data.host === $authStore.currentUser.uid;
+			}
+			if ($authStore.currentUser?.uid) {
+				isChallenger = data.challenger === $authStore.currentUser.uid;
+			}
+			data.board.forEach((cell, index) => {
+				const winner = checkWinner(cell);
+				const skill = data.skills?.find((skill) => skill.pos === index);
+				if (winner && skill && isHost) {
+					const removedSkill = data.skills?.filter((s) => s.pos !== index);
+					switch (skill.skill) {
+						case 'SKIP':
+							if (isHost) {
+								update(ref(db, `rooms/${roomId}`), {
+									turn: 'X',
+									skills: removedSkill
+								});
+							} else {
+								update(ref(db, `rooms/${roomId}`), {
+									turn: 'O',
+									skills: removedSkill
+								});
+							}
+							break;
+						case 'STAR':
+							let rng = Math.floor(Math.random() * 9);
+							let tries = 0;
+							while (rng === index || checkWinner(data.board[rng]) === null && tries < 10) {
+								rng = Math.floor(Math.random() * 9);
+								tries++;
+							}
+							const newBoard = data.board.map((cell, i) => {
+								if (i === rng) {
+									return isHost ? Array(9).fill("X") : Array(9).fill("O");
+								}
+								return cell;
+							});
+							update(ref(db, `rooms/${roomId}`), {
+								turn: isHost ? 'O' : 'X',
+								board: newBoard,
+								skills: removedSkill
+							});
+							break;
+					}
+				}
+			});
+		}
+	});
+
 	onValue(ref(db, `rooms/${roomId}`), async (snapshot) => {
 		const data = snapshot.val();
 		if (data) {
@@ -36,7 +89,6 @@
 				isLoading = false;
 			}
 			player1 = await getProfile(data.host);
-			console.log(data.hostCharacter)
 			switch (data.hostCharacter) {
 				case 'piglet':
 					player1Profile = '/piglet.png';
@@ -52,28 +104,6 @@
 			$boardYai = data.board.map((cell, index) => {
 				if (cell.every((cell) => cell !== '') && !checkWinner(cell)) {
 					return 'D';
-				}
-				const winner = checkWinner(cell);
-				const skill = data.skills?.find((skill) => skill.pos === index);
-				if (winner && skill) {
-					console.log("Use skill", skill);
-					switch (skill.skill) {
-						case 'SKIP':
-							if (isHost) {
-								update(ref(db, `rooms/${roomId}`), {
-									turn: 'O'
-								});
-							} else {
-								update(ref(db, `rooms/${roomId}`), {
-									turn: 'X'
-								});
-							}
-							break;
-					}
-					const removedSkill = data.skills?.filter((s) => s.pos !== index);
-					update(ref(db, `rooms/${roomId}`), {
-						skills: removedSkill
-					});
 				}
 				return winner || '';
 			});
@@ -215,13 +245,13 @@
 					</p>
 					<div class="flex w-full flex-row justify-center gap-2 sm:flex-col sm:gap-4">
 						<button
-							class="button mx-0 sm:mx-auto rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							class="button mx-0 rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:mx-auto sm:w-[60%] sm:py-4 sm:text-3xl"
 							on:click={playAgain}
 						>
 							Play Again</button
 						>
 						<button
-							class="button mx-0 sm:mx-auto rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:w-[60%] sm:py-4 sm:text-3xl"
+							class="button mx-0 rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:mx-auto sm:w-[60%] sm:py-4 sm:text-3xl"
 							on:click={backToMain}
 						>
 							Back to main menu</button
@@ -240,11 +270,7 @@
 			>
 				O
 			</p>
-			<img
-				src={player2Profile}
-				alt="player 2"
-				class="aspect-square w-28 rounded-2xl sm:w-40"
-			/>
+			<img src={player2Profile} alt="player 2" class="aspect-square w-28 rounded-2xl sm:w-40" />
 		</div>
 	</div>
 </div>
