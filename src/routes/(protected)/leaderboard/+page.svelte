@@ -19,7 +19,7 @@
 		<p class="pb-5 text-4xl font-semibold text-mongoose-700 sm:text-5xl lg:text-6xl">
 			Leaderboards
 		</p>
-		<table class="w-[80%] table-fixed text-sm sm:text-xl lg:text-2xl">
+		<table class="w-[80%] table-fixed text-sm sm:text-xl lg:text-2xl mb-20">
 			<thead class=" bg-mongoose-800 text-mongoose-100">
 				<tr>
 					<th class="p-3 lg:p-5">RANK</th>
@@ -45,7 +45,7 @@
 	</div>
 	<a href="/home"
 		><button
-			class="absolute bottom-0 left-0 m-6 h-[5vh] w-[30%] rounded-full bg-mongoose-900 text-2xl font-medium text-white sm:h-[8vh] sm:text-3xl lg:w-[10%]"
+			class="fixed bottom-0 left-0 m-6 h-[5vh] w-[30%] rounded-full bg-mongoose-900 text-2xl font-medium text-white sm:h-[8vh] sm:text-3xl lg:w-[10%]"
 			>Back</button
 		>
 	</a>
