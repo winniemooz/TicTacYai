@@ -18,15 +18,6 @@
 	let skillpic = 'https://via.placeholder.com/150';
 
 	$: skill = skills?.find((skill) => skill.pos === boardCell)
-	
-	// switch(skill){
-	// 	case 'STAR':
-	// 		skillpic = '/star.png';
-	// 		break;
-	// 	case 'SKIP':
-	// 		skillpic = '/no-stopping.png';
-	// 		break;
-	// }
 
 	$: if (checkWinner(board)) {
 		winner = checkWinner(board);
@@ -62,12 +53,12 @@
 	{#if skill}
 	{#if skill.skill == "STAR"}
 	<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none opacity-40">
-			<img src="/star.png">
+			<img class="w-2/3" src="/star.png">
 		</div>
 	{/if}
 	{#if skill.skill == "SKIP"}
 	<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none opacity-40">
-			<img src="/no-stopping.png">
+			<img class="w-2/3" src="/no-stopping.png">
 		</div>
 	{/if}
 	{/if}

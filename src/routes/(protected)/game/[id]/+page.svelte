@@ -241,7 +241,7 @@
 		<p class="text-xl text-mongoose-600 lg:text-3xl">ROOM CODE</p>
 		<p class=" text-4xl font-bold text-mongoose-800 lg:text-6xl">{roomId}</p>
 		<div
-			class="grid aspect-square md:w-10/12 grid-cols-3 gap-1 rounded-lg bg-[#73593B] outline outline-4 outline-[#73593B] w-11/12"
+			class="grid aspect-square md:w-8/12 grid-cols-3 gap-1 rounded-lg bg-[#73593B] outline outline-4 outline-[#73593B] w-11/12"
 		>
 			{#each board as _, i}
 				<Tictac boardCell={i} {roomId} />
