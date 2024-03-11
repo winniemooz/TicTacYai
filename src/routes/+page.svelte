@@ -358,7 +358,7 @@
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
 										<p class="text-xl">
-											Players can place there symbol on top of their opponent's symbol.
+											Player will randomly get wins on another free grid.
 										</p>
 									</div>
 									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
