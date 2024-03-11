@@ -253,25 +253,28 @@
 				class="fixed inset-0 z-50 flex h-full w-full justify-center bg-gray-900 bg-opacity-50"
 			>
 				<div
-					class="absolute top-[35%] flex w-[80%] flex-col justify-center gap-4 rounded-3xl border-8 border-mongoose-800 bg-mongoose-100 py-20 text-center sm:top-[30%] sm:gap-12 lg:w-[40%]"
+					class="absolute top-[35%] flex w-[80%] flex-col justify-center gap-4 rounded-3xl border-8 border-mongoose-800 bg-mongoose-100 py-20 text-center sm:top-[30%] sm:gap-12 lg:w-[50%]"
 					transition:fly={{ duration: 100, y: 100 }}
 				>
 					<p class="text-4xl font-semibold text-mongoose-600 sm:text-5xl">
 						{#if winner}
-							Winner is {winner == 'X' ? player1?.username : player2?.username}
+							<div class="flex flex-col lg:flex-row justify-center sm:gap-4">
+								<div>Winner is</div> 
+							<div>{winner == 'X' ? player1?.username : player2?.username}</div> 
+							</div>
 						{:else if isDraw}
 							Draw
 						{/if}
 					</p>
-					<div class="flex w-full flex-row justify-center gap-2 sm:flex-col sm:gap-4">
+					<div class="flex w-full px-7 sm:px-20 sm:flex-row justify-center gap-2 flex-col sm:gap-4">
 						<button
-							class="button mx-0 rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:mx-auto sm:w-[60%] sm:py-4 sm:text-3xl"
+							class="button mx-0 rounded-full bg-mongoose-400 px-3 py-2 text-base text-mongoose-100 sm:mx-auto sm:w-[50%] sm:py-4 lg:text-3xl"
 							on:click={playAgain}
 						>
 							Play Again</button
 						>
 						<button
-							class="button mx-0 rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:mx-auto sm:w-[60%] sm:py-4 sm:text-3xl"
+							class="button mx-0 rounded-full bg-mongoose-700 px-3 py-2 text-base text-mongoose-100 sm:mx-auto sm:w-[50%] sm:py-4 lg:text-3xl"
 							on:click={backToMain}
 						>
 							Back to main menu</button
