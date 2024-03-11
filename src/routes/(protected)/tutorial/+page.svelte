@@ -67,26 +67,19 @@
 			<p class="w-100 mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
 				SPECIAL SKILLS
 			</p>
-			<div class="skill mx-4 grid h-[50vh] grid-cols-3 gap-8 rounded-xl bg-mongoose-200 px-6">
-				<div class="flex flex-col mt-16 items-center text-center">
+			<div class="skill mx-4 grid h-[50vh] grid-cols-2 gap-8 rounded-xl bg-mongoose-200 px-6">
+				<div class="flex flex-col sm:mt-16 items-center text-center">
 					<img src="/star.png" alt="" class="w-[60%]" />
 					<p class=" mt-4 font-black text-4xl text-[#FF9900]">STAR</p>
 					<p class=" text-lg font-medium text-mongoose-800">
 						Players can place there symbol on top of their opponent's symbol.
 					</p>
 				</div>
-				<div class="flex flex-col mt-16 items-center text-center">
+				<div class="flex flex-col sm:mt-16 items-center text-center">
 					<img src="/no-stopping.png" alt="" class="w-[55%]" />
 					<p class=" mt-4 font-black text-4xl text-[#CB3D3D]">SKIP</p>
 					<p class=" text-lg font-medium text-mongoose-800">
 						Your opponent is not allowed to play in next turn.
-					</p>
-				</div>
-				<div class="flex flex-col mt-16 items-center text-center">
-					<img src="/Timer.png" alt="" class="w-[60%]" />
-					<p class=" mt-4 font-black text-4xl text-[#513D6C]">TIMER</p>
-					<p class=" text-lg font-medium text-mongoose-800">
-						The next turn your opponent play time reduces to 3 seconds.
 					</p>
 				</div>
 			</div>
