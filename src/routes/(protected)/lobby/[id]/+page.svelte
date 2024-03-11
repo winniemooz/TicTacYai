@@ -40,7 +40,7 @@
 
 	const startGame = async () => {
 		if (ready && isHost) {
-			const skillset = ["SKIP", "STAR"]
+			const skillset = ["SKIP", "SKIP", "STAR"]
 			const skills = []
 			
 			skillset.forEach((skill) => {
@@ -124,9 +124,9 @@
 			{/if}
 			<div class="card-container flex flex-row items-center justify-center gap-2">
 				<button
-					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#D89874] bg-[#F3C9AA] text-[#D89874] transition 
+					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#D89874]  text-[#D89874] transition 
 					${isHost && 'hover:scale-100 hover:opacity-100'} 
-					${roomInfo?.hostCharacter == 'puppy' ? 'scale-100 opacity-100 bg-[#D89874] text-white' : 'scale-90 opacity-50'}
+					${roomInfo?.hostCharacter == 'puppy' ? 'scale-100 opacity-100 bg-[#D89874] text-white' : 'scale-90 bg-[#F3C9AA] opacity-50'}
 					${!isHost && 'cursor-not-allowed'}`}
 					id="puppy"
 					on:click={() => selectCharacter('puppy')}
@@ -137,9 +137,9 @@
 				</button>
 				<p class="text-mb text-[#D89874]">PUPPY</p>
 				<button
-					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#98AAC0] bg-[#C8DAF0] text-[#98AAC0]  transition 
+					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#98AAC0]  text-[#98AAC0]  transition 
 					${isHost && 'hover:scale-100 hover:opacity-100'} 
-					${roomInfo?.hostCharacter == 'kitty' ? 'scale-100 opacity-100 bg-[#98AAC0] text-white' : 'scale-90 opacity-50'}
+					${roomInfo?.hostCharacter == 'kitty' ? 'scale-100 opacity-100 bg-[#98AAC0] text-white' : 'bg-[#C8DAF0] scale-90 opacity-50'}
 					${!isHost && 'cursor-not-allowed'}`}
 					id="kitty"
 					on:click={() => selectCharacter('kitty')}
@@ -150,9 +150,9 @@
 				</button>
 				<p class="text-mb text-[#98AAC0]">KITTY</p>
 				<button
-					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#B78B8B] bg-[#EECCCC] text-[#B78B8B]  transition 
+					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#B78B8B]  text-[#B78B8B]  transition 
 					${isHost && 'hover:scale-100 hover:opacity-100'} 
-					${roomInfo?.hostCharacter == 'piglet' ? 'scale-100 opacity-100 bg-[#B78B8B] text-white' : 'scale-90 opacity-50'}
+					${roomInfo?.hostCharacter == 'piglet' ? 'scale-100 opacity-100 bg-[#B78B8B] text-white' : 'bg-[#EECCCC] scale-90 opacity-50'}
 					${!isHost && 'cursor-not-allowed'}`}
 					id="piglet"
 					on:click={() => selectCharacter('piglet')}
@@ -175,9 +175,9 @@
 			"
 			>
 				<button
-					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#D89874] bg-[#F3C9AA] text-[#D89874]  transition 
+					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#D89874]  text-[#D89874]  transition 
 					${isChallenger && 'hover:scale-100 hover:opacity-100'} 
-					${roomInfo?.challengerCharacter == 'puppy' ? 'scale-100 opacity-100 bg-[#D89874] text-white' : 'scale-90 opacity-50'}
+					${roomInfo?.challengerCharacter == 'puppy' ? 'scale-100 opacity-100 bg-[#D89874] text-white' : 'bg-[#F3C9AA] scale-90 opacity-50'}
 					${!isChallenger && 'cursor-not-allowed'}`}
 					id="puppy"
 					on:click={() => selectCharacter('puppy')}
@@ -188,9 +188,9 @@
 				</button>
 				<p class="text-mb text-[#D89874]">PUPPY</p>
 				<button
-					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#98AAC0] bg-[#C8DAF0] text-[#98AAC0]  transition 
+					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#98AAC0]  text-[#98AAC0]  transition 
 					${isChallenger && 'hover:scale-100 hover:opacity-100'} 
-					${roomInfo?.challengerCharacter == 'kitty' ? 'scale-100 opacity-100 bg-[#98AAC0] text-white' : 'scale-90 opacity-50'}
+					${roomInfo?.challengerCharacter == 'kitty' ? 'scale-100 opacity-100 bg-[#98AAC0] text-white' : 'bg-[#C8DAF0] scale-90 opacity-50'}
 					${!isChallenger && 'cursor-not-allowed'}`}
 					id="kitty"
 					on:click={() => selectCharacter('kitty')}
@@ -201,9 +201,9 @@
 				</button>
 				<p class="text-mb text-[#98AAC0]">KITTY</p>
 				<button
-					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#B78B8B] bg-[#EECCCC] text-[#B78B8B]  transition 
+					class={`card flex flex-col items-center justify-center border-8 font-semibold border-[#B78B8B]  text-[#B78B8B]  transition 
 					${isChallenger && 'hover:scale-100 hover:opacity-100'} 
-					${roomInfo?.challengerCharacter == 'piglet' ? 'scale-100 opacity-100 bg-[#B78B8B] text-white' : 'scale-90 opacity-50'}
+					${roomInfo?.challengerCharacter == 'piglet' ? 'scale-100 opacity-100 bg-[#B78B8B] text-white' : 'bg-[#EECCCC] scale-90 opacity-50'}
 					${!isChallenger && 'cursor-not-allowed'}`}
 					id="piglet"
 					on:click={() => selectCharacter('piglet')}

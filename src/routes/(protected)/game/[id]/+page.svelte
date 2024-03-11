@@ -47,12 +47,12 @@
 						case 'SKIP':
 							if (isHost) {
 								update(ref(db, `rooms/${roomId}`), {
-									turn: 'X',
+									turn: 'O',
 									skills: removedSkill
 								});
 							} else {
 								update(ref(db, `rooms/${roomId}`), {
-									turn: 'O',
+									turn: 'X',
 									skills: removedSkill
 								});
 							}
@@ -60,18 +60,19 @@
 						case 'STAR':
 							let rng = Math.floor(Math.random() * 9);
 							let tries = 0;
-							while (rng === index || checkWinner(data.board[rng]) === null && tries < 10) {
+							while (rng === index || checkWinner(data.board[rng]) === winner && tries < 10) {	
 								rng = Math.floor(Math.random() * 9);
+								console.log(rng)
 								tries++;
 							}
 							const newBoard = data.board.map((cell, i) => {
 								if (i === rng) {
-									return isHost ? Array(9).fill("X") : Array(9).fill("O");
+									return winner == 'X' ? Array(9).fill("X") : Array(9).fill("O");
 								}
 								return cell;
 							});
 							update(ref(db, `rooms/${roomId}`), {
-								turn: isHost ? 'O' : 'X',
+								turn: winner == 'X' ? 'O' : 'X',
 								board: newBoard,
 								skills: removedSkill
 							});
@@ -122,8 +123,10 @@
 				if (cell.every((cell) => cell !== '') && !checkWinner(cell)) {
 					return 'D';
 				}
+				const winner = checkWinner(cell);
 				return winner || '';
 			});
+			console.log($boardYai)
 			if (data.winner && data.phrase != '4' && isHost) {
 				if (data.winner === 'X') {
 					await updateDoc(doc(firestore, 'UserProfile', data.host), {
@@ -238,7 +241,7 @@
 		<p class="text-xl text-mongoose-600 lg:text-3xl">ROOM CODE</p>
 		<p class=" text-4xl font-bold text-mongoose-800 lg:text-6xl">{roomId}</p>
 		<div
-			class="grid aspect-square w-10/12 grid-cols-3 gap-1 rounded-lg bg-[#73593B] outline outline-4 outline-[#73593B] sm:w-8/12"
+			class="grid aspect-square md:w-10/12 grid-cols-3 gap-1 rounded-lg bg-[#73593B] outline outline-4 outline-[#73593B] w-11/12"
 		>
 			{#each board as _, i}
 				<Tictac boardCell={i} {roomId} />

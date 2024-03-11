@@ -324,10 +324,6 @@
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
 										<h3 class="text-3xl font-bold text-red-400">PIGLET</h3>
-										<p class="">
-											When the player win in the small grid, there’s a 50% chance of getting a
-											random skill if the player didn’t received the skill yet in the game.
-										</p>
 									</div>
 									<div class="mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
@@ -336,10 +332,6 @@
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
 										<h3 class="text-3xl font-bold text-blue-400">KITTY</h3>
-										<p class="">
-											When the opponent wins 2 small grid, the player will receive a random Skill 1
-											time.<br />(once per game)
-										</p>
 									</div>
 									<div class=" mb-8 flex w-full flex-col items-center justify-start gap-3">
 										<img
@@ -348,10 +340,6 @@
 											class="h-30 w-auto max-w-full rounded-lg"
 										/>
 										<h3 class="text-3xl font-bold text-orange-400">PUPPY</h3>
-										<p class="">
-											Player have a 25% chance to steal a Skill when their opponent gains a Skill.<br
-											/>(once per game)
-										</p>
 									</div>
 								</div>
 							</div>
@@ -369,19 +357,8 @@
 											alt="Skill 1"
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
-										<p class="">
+										<p class="text-xl">
 											Players can place there symbol on top of their opponent's symbol.
-										</p>
-									</div>
-									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
-										<img
-											src="Timer.png"
-											alt="Skill 2"
-											class="h-50 aspect-square w-24 max-w-full rounded-lg"
-										/>
-										<p class="">
-											When the opponent wins 2 small grid, the player will receive a random Skill 1
-											time.(once per game)
 										</p>
 									</div>
 									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
@@ -390,7 +367,7 @@
 											alt="Skill 3"
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
-										<p class="">The next turn your opponent play time reduces to 3 seconds.</p>
+										<p class="text-xl">The next turn your opponent play time reduces to 3 seconds.</p>
 									</div>
 								</div>
 							</div>

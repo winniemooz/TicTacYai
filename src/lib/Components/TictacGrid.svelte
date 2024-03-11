@@ -60,9 +60,16 @@
 
 {#if !winner}
 	{#if skill}
-		<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none">
-			{skill.skill}
+	{#if skill.skill == "STAR"}
+	<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none opacity-40">
+			<img src="/star.png">
 		</div>
+	{/if}
+	{#if skill.skill == "SKIP"}
+	<div class="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none opacity-40">
+			<img src="/no-stopping.png">
+		</div>
+	{/if}
 	{/if}
 	{#each board as cell, i}
 		<div class="text-[#73593B]" class:opacity-70={isDraw}>
@@ -97,6 +104,6 @@
 			winner == 'X' ? 'bg-[#7F8CAE]' : 'bg-[#D18A8A]'
 		} flex items-center justify-center`}
 	>
-		<h1 class="text-9xl font-bold text-[#FFF6E9]">{winner}</h1>
+		<h1 class="text-7xl sm:text-9xl font-bold text-[#FFF6E9]">{winner}</h1>
 	</div>
 {/if}

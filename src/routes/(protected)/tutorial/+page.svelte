@@ -32,42 +32,11 @@
 		</div>
 	</div>
 	<div class="char-skills mx-[10%] my-[4vh] flex flex-col items-center lg:flex-row">
-		<div class="flex flex-col items-center lg:w-[60%]">
-			<p class="mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
-				CHARACTER
-			</p>
-			<div class="char mx-4 grid h-[50vh] grid-cols-3 gap-8 rounded-xl bg-mongoose-200 px-6">
-				<div class="flex flex-col mt-10 items-center text-center">
-					<img src="/piglet.png" alt="" class=" w-[80%]" />
-					<p class=" mt-4 font-black text-4xl text-[#FF6A6A]">PIGLET</p>
-					<p class=" text-lg font-medium text-mongoose-800">
-						When the player win in the small grid, get 50% chance of getting random skill if player
-						didn’t received skill yet in game.
-					</p>
-				</div>
-				<div class="flex flex-col mt-10 items-center text-center">
-					<img src="/Kitty.png" alt="" class=" w-[80%]"/>
-					<p class=" mt-4 font-black text-4xl text-[#4B79B0]">KITTY</p>
-					<p class=" text-lg font-medium text-mongoose-800">
-						When the opponent wins 2 small grid, the player will receive a random Skill 1 time.(once
-						per game)
-					</p>
-				</div>
-				<div class="flex flex-col mt-10 items-center text-center">
-					<img src="/Puppy.png" alt="" class=" w-[80%]"/>
-					<p class=" mt-4 font-black text-4xl text-[#FA8836]">PUPPY</p>
-					<p class=" text-lg font-medium text-mongoose-800">
-						Player have a 25% chance to steal a Skill when their opponent gains a Skill. (once per
-						game)
-					</p>
-				</div>
-			</div>
-		</div>
 		<div class="flex flex-col items-center lg:w-[40%]">
 			<p class="w-100 mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
 				SPECIAL SKILLS
 			</p>
-			<div class="skill mx-4 grid h-[50vh] grid-cols-2 gap-8 rounded-xl bg-mongoose-200 px-6">
+			<div class="skill mx-4 grid h-[45vh] grid-cols-2 gap-8 rounded-xl bg-mongoose-200 px-6">
 				<div class="flex flex-col sm:mt-16 items-center text-center">
 					<img src="/star.png" alt="" class="w-[60%]" />
 					<p class=" mt-4 font-black text-4xl text-[#FF9900]">STAR</p>
@@ -84,6 +53,26 @@
 				</div>
 			</div>
 		</div>
+		<div class="flex flex-col items-center lg:w-[60%]">
+			<p class="mb-4 flex text-center text-5xl font-bold tracking-wide text-mongoose-700">
+				CHARACTER
+			</p>
+			<div class="char mx-4 grid h-[30vh] grid-cols-3 gap-8 rounded-xl bg-mongoose-200 px-6">
+				<div class="flex flex-col mt-10 items-center text-center">
+					<img src="/piglet.png" alt="" class=" w-[80%]" />
+					<p class=" mt-4 font-black text-4xl text-[#FF6A6A]">PIGLET</p>	
+				</div>
+				<div class="flex flex-col mt-10 items-center text-center">
+					<img src="/Kitty.png" alt="" class=" w-[80%]"/>
+					<p class=" mt-4 font-black text-4xl text-[#4B79B0]">KITTY</p>	
+				</div>
+				<div class="flex flex-col mt-10 items-center text-center">
+					<img src="/Puppy.png" alt="" class=" w-[80%]"/>
+					<p class=" mt-4 font-black text-4xl text-[#FA8836]">PUPPY</p>
+				</div>
+			</div>
+		</div>
+		
 	</div>
 	<a href="/home"
 		><button
