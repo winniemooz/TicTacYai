@@ -41,7 +41,7 @@
 					<img src="/star.png" alt="" class="w-[60%]" />
 					<p class=" mt-4 font-black text-4xl text-[#FF9900]">STAR</p>
 					<p class=" text-lg font-medium text-mongoose-800">
-						Player will randomly get wins on another free grid.
+						Player will randomly get wins on another grid that not your wins grid.
 					</p>
 				</div>
 				<div class="flex flex-col sm:mt-16 items-center text-center">

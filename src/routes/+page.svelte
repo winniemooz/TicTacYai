@@ -358,7 +358,7 @@
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
 										<p class="text-xl">
-											Player will randomly get wins on another free grid.
+											Player will randomly get wins on another grid that not your wins grid.
 										</p>
 									</div>
 									<div class="mx-auto mb-8 flex w-full flex-col items-center gap-8">
