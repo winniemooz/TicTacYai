@@ -367,7 +367,7 @@
 											alt="Skill 3"
 											class="h-50 aspect-square w-24 max-w-full rounded-lg"
 										/>
-										<p class="text-xl">The next turn your opponent play time reduces to 3 seconds.</p>
+										<p class="text-xl">Your opponent is not allowed to play in next turn.</p>
 									</div>
 								</div>
 							</div>
